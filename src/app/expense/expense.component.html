@@ -1,0 +1,49 @@
+<div class="total">
+    <div class="alert alert-sucess" *ngIf="message">{{message}}</div>
+    <div class="alert alert-danger" *ngIf="err">{{err}}</div>
+<table class="main" align="center">
+    <th>
+        Expenses
+    </th>
+    <tr>
+        <td align="center" style="border-radius: 50px;">
+            <form #ecat="ngForm" (ngSubmit)="addExpense(ecat.form)">
+                <div class="form-group" style="margin-top: 20px;">
+                    <input placeholder="Expenses" required #exp="ngModel" [(ngModel)]="expense.name" [class.notvalid]="exp.invalid && exp.touched" type="text" name="exp" autocomplete="off" class="form-control">
+                    <small class="text-danger" [class.d-none]="exp.valid || exp.untouched">Name is required</small>
+                </div>
+                <div class="form-group myselect">
+                    <label>Category</label>
+                            <select (blur)="validateCat(cat.value)" (change)="validateCat(cat.value)" [class.notvalid]="catHasError && cat.touched && cat.value == 0" name="cat" class="form-control" #cat="ngModel" [(ngModel)]="expense.ecId">
+                                <option value="0"></option>
+                                <option *ngFor="let x of category" [value]='x.id'>{{x.name}}</option>
+                                <option *ngIf="category.length == 0">No categories added</option>
+                            </select>
+                            <small class="text-danger" [class.d-none]="!catHasError || cat.untouched || category.length == 0 || cat.value != 0">Choose one of the categories</small>
+                </div>
+                <div class="form-group">
+                    <span id="lbl">&#8377;</span><input type="number" placeholder="Amount" required #pri="ngModel" [(ngModel)]="expense.amount" [class.notvalid]="pri.invalid && pri.touched" name="pri" autocomplete="off" class="form-control">
+                    <small class="text-danger" [class.d-none]="pri.valid || pri.untouched">Amount is required</small>
+                </div>
+                <div class="form-group myselect">
+                    <label style="margin-right: 10px;">Pay by</label>
+                    <select (blur)="validatePB(payby.value)" (change)="validatePB(payby.value)" name="payby" [class.notvalid]="pbHasError && payby.touched" class="form-control" #payby="ngModel" [(ngModel)]="expense.payby">
+                        <option value="payby" disabled hidden>Pay by</option>
+                        <option *ngFor="let x of paymodes" [value]='x'>{{x}}</option>
+                    </select>
+                    <small class="text-danger" [class.d-none]="!pbHasError || payby.untouched">Choose one of the pay modes</small>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Remark" required #remark="ngModel" [(ngModel)]="expense.remark" [class.notvalid]="remark.invalid && remark.touched" name="remarkails" class="form-control"></textarea>
+                    <small class="text-danger" [class.d-none]="remark.valid || remark.untouched">Provide brief remark</small>
+                </div>
+                <div class="form-group">
+                    <label>Date</label><input type="date" name="dt" class="form-control" required [class.notvalid]="dt.invalid && dt.touched" #dt="ngModel" [(ngModel)]="expense.dat">
+                    <small class="text-danger" [class.d-none]="dt.valid || dt.untouched">Date is required</small>
+                </div>
+                <input type="submit" value="SUBMIT" (click)="untouch(ecat.form)" class="sub">
+            </form>
+        </td>
+    </tr>
+</table>
+</div>

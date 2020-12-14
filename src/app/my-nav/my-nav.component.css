@@ -1,0 +1,117 @@
+@font-face{
+  font-family: Monte;
+  src: url("src\assets\fonts\Montserrat-Regular.ttf");
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 275px;
+}
+
+
+.sidenav a{
+  font-family: 'Montserrat', 'Monte';
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 17px;
+  height: 70px;
+  display: block;
+  transition: 0.25s;
+}
+
+.sidenav span{
+  height: 95%;
+  width: 8px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 0;
+  left: -8px;
+  opacity: 1;
+  transition: .5s;
+}
+
+.nav-link{
+  font-size: 25px;
+  display: inline-block;
+  margin: 2px;
+  width: 55px;
+  transition: .5s;
+}
+
+.nav-link:hover, 
+.link-grp a.link-active{
+  text-shadow: 0 0 25px white;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.link-grp{
+  right: 0;
+  position: absolute;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+  font-family: 'Montserrat', 'Monte';
+  padding: 0px 70px;
+  letter-spacing: 4px;
+  font-weight: 500;
+  background-color: rgb(56, 56, 56);
+  margin: 0;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sidenav a:hover,
+mat-nav-list a.menu-active
+{
+  padding-left: 15px;
+}
+
+.brand{
+  margin-left: 20px;
+  letter-spacing: 6px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.897);
+  text-transform: uppercase;
+  font-weight: 400;
+  -moz-user-select: none;
+}
+
+@media all and (max-width: 700px){
+  .brand{
+    font-size: 17px;
+    letter-spacing: 1px;
+  }
+
+  .nav-link{
+    font-size: 18px;
+    width: 40px;
+    margin: 1px;
+  }
+  
+  .nav-link:hover,
+  .link-grp a.link-active{
+    text-shadow: 0 0 20px white;
+    font-size: 23px;
+    font-weight: 400;
+  }
+}
+
+@media all and (max-width: 370px){
+  .brand{
+    font-size: 15px;
+    letter-spacing: 0px;
+    margin-left: -2px;
+  }
+  .nav-link{
+    margin: 0px;
+  }
+}

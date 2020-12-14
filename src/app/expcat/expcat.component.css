@@ -1,0 +1,189 @@
+@font-face{
+    font-family: Monte;
+    src: url("src\assets\fonts\Montserrat-Regular.ttf");
+  }
+
+.main{
+    /* border: 2px solid black; */
+    /* border-radius: 30px; */
+    font-family: 'Montserrat','Monte';
+    /* margin-top: 40px; */
+    width: 400px;
+    text-align: center;
+}
+
+.total{
+    padding-bottom: 40px;
+    height: auto;
+}
+
+.main th{
+    background-color: black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 23px;
+    text-transform: uppercase;
+    padding: 10px 10px;
+}
+
+.sub{
+    padding: 10px 30px; 
+    border: 2px solid orangered;
+    border-radius: 50px;
+    background: none;
+    color: white;
+    margin-bottom: 10px;
+    outline: none;
+    transition: .5s;
+    cursor: pointer;
+ }
+
+ .sub:hover{
+    background: orangered;
+}
+
+.form-control{
+    outline: none;
+    box-shadow: none;
+}
+
+.main input[type=text]{
+    width: 350px;
+    background: none;
+    margin-top: 10px;
+    color: white;
+    border: 2px solid cornflowerblue;
+    border-radius: 20px;
+    padding: 8px 15px;
+    transition: .5s;
+    font-size: 15px;
+}
+
+.main textarea{
+    width: 350px;
+    transition: .5s;
+    height: 100px;
+    color: white;
+    background: none;
+    border: 2px solid cornflowerblue;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 15px;
+    resize: none;
+}
+
+.main input[type=text]:focus,
+.main textarea:focus{
+    border: 2px solid greenyellow;
+}
+
+.notvalid{
+    box-shadow: 0 0 15px red;
+}
+
+small{
+    display: block;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+.alertbox{
+    border: 1px solid white;
+    text-align: center;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 20px 0px;
+}
+
+.nocat{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    margin: 30px;
+    margin-bottom: 0px;
+    padding: 10px;
+    height: 150px;
+    font-family: 'Montserrat';
+}
+
+#pagn{
+    display: flex;
+    justify-content: center;
+    width: auto;
+    height: 60px;
+    padding: 0;
+}
+
+.nocat h3{
+    margin: 0;
+    position: absolute;
+    left: 70%;
+    transform: translateX(-70%);
+    width: 40%;
+    font-family: 'Quicksand';
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 2em;
+}
+
+.cat-table{
+    text-align: center;
+    margin-top: 30px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.753);
+    border: hidden;
+    border-color:rgb(22, 22, 22);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.cat-table i{
+    font-size: 20px;
+}
+
+.cat-table td,
+.cat-table th{
+    padding: 10px 5px;
+}
+
+.cat-table th{
+    background-color: rgb(22, 22, 22);
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.cat-table td{
+    background-color: rgb(34, 34, 34);
+    font-weight: 400;
+}
+
+@media all and (max-width: 800px){
+    .main{
+        width: 350px;
+    }
+
+    .main th{
+        font-size: 20px;
+    }
+
+    .main input[type=text]{
+        width: 280px;
+    }
+
+    .main textarea{
+        width: 280px;
+    }
+}
+
+@media all and (max-width: 370px){
+    .main{
+        border: none;
+        width: 290px;
+    }
+    .main input[type=text],
+    .main textarea{
+        width: 240px;
+    }
+    .main th{
+        font-size: 19px;
+    }
+}

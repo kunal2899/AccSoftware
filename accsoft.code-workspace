@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "D:\\PROJECTS"
+		},
+		{
+			"name": "AccSoftware",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "PROJECTS",
+		"git.ignoreLimitWarning": true
+	}
+}

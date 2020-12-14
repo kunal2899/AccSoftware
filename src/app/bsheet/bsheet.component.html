@@ -1,0 +1,43 @@
+<table id="t1" width="100%" border=2>
+    <tr id="hd">
+        <td rowspan="2" width="10%">BALANCE SHEET</td>
+        <td colspan="3"> Date</td>
+        <td rowspan="2" width="16%"><input id="sub" name="btnShow" type="submit" value="SHOW"></td>
+    </tr>
+    <tr id="hd"><td width="37%">from &nbsp;<input id="datee" type="date" required></td>
+        <td width="32%" colspan="2">to &nbsp;<input id="datee" type="date" required></td>
+    </tr>
+    <tr id="hd">
+        <td colspan="2">INCOMES</td>
+        <td colspan="3">EXPENSES</td>
+    </tr>
+</table>
+<table id="t2" width="50%" align="left">
+    <tr id="hd">
+        <td>Account Name</td>
+        <td>Amount</td>
+    </tr>
+    <tr>
+        <td>C Revenue</td>
+        <td>10000</td>
+    </tr>
+    <tr id="hd">
+        <td>Total</td>
+        <td>{{total_inc}}</td>
+    </tr>
+</table>
+<table id="t2" width="50%" align="right">
+    <tr id="hd">
+        <td>Account Name</td>
+        <td>Amount</td>
+    </tr>
+    <tr>
+        <td>Electricity Bill</td>
+        <td>500</td>
+    </tr>
+    <tr id="hd">
+        <td>Total</td>
+        <td>{{total_exp}}</td>
+    </tr>
+</table>
+<div class="gpro">Gross Profit : {{gp}}</div>

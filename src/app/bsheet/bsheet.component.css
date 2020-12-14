@@ -1,0 +1,67 @@
+@font-face{
+    font-family: Monte;
+    src: url("src\assets\fonts\Montserrat-Regular.ttf");
+  }
+
+
+.gpro{
+    font-size: 17px;
+    font-family: 'Monteserrat','Monte';
+    text-align: center;
+    margin: 10px;
+    margin-top: 10px;
+}
+#datee {
+    width: 72%;
+    height: 30px;
+    font-family: 'Monteserrat','Monte';
+    font-size: 14px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.267);
+    margin-top: 7px;
+    margin-bottom: 10px;
+    border: none;
+    color: white;
+    outline: none;
+    box-shadow: none;
+    /* border-left: none; */
+}
+#t1 {
+    margin-top: 10px;
+    /* width: 500px; */
+    border-style: solid;
+    border-color: rgb(22, 22, 22);
+    font-family: 'Monteserrat','Monte';
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+}
+#t2 {
+    /* width: 500px; */
+    border-style: solid;
+    border-color: rgb(22, 22, 22);
+    font-family: 'Monteserrat','Monte';
+    color: white;
+    text-align: center;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.473);
+}
+#hd{
+    background-color: rgb(20, 20, 20);
+}
+#sub{
+    width: 93px;
+    height: 70px;
+    border-radius: 5px;
+    font-family: 'Monteserrat','Monte';
+    font-size: 17px;
+    color: white;
+    background-color: rgb(39, 39, 39);
+    border: rgb(10, 10, 10);
+    outline: none;
+    transition: 0.2s;
+}
+#sub:hover{
+    color: black;
+    background-color: cornflowerblue;
+}

@@ -1,0 +1,55 @@
+<div class="total">
+    <div class="container">
+        <h1 style="margin-left: 20px;">UPDATE PROFILE</h1>
+<form #userReg="ngForm">
+    <!-- <div class="text-danger">{{userReg.value | json}}</div> --><br>
+    <div class="form-group" style="margin-top: 20px;">
+        <input type="text" name="name" #name="ngModel" placeholder="Name" pattern="[a-zA-Z' ']{1,20}" [class.notvalid]="name.invalid && name.touched" required autocomplete="off" class="form-control" ngModel><i class="fas fa-pen"></i>
+        <!-- <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name field is required</small> -->
+        <div *ngIf="name.errors && (name.valid || name.touched)">
+            <small class="text-danger" *ngIf="name.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Name is required</small>
+            <small class="text-danger" *ngIf="name.errors.pattern"><i class="far fa-exclamation-circle"></i>&nbsp;Should only contain alphabets (A-Z,a-z)</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="text" name="add" #add="ngModel" placeholder="Address" [class.notvalid]="add.invalid && add.touched" required autocomplete="off" class="form-control" ngModel><i class="fas fa-pen"></i>
+        <small class="text-danger" [class.d-none]="add.valid || add.untouched"><i class="far fa-exclamation-circle"></i>&nbsp;Address is required</small>
+    </div>
+    <div class="form-group">
+        <input type="tel" name="mob" #mob="ngModel" [class.notvalid]="mob.invalid && mob.touched" pattern="[0-9]{1,10}" minlength="10" maxlength="10" placeholder="New mobile number" required autocomplete="off" class="form-control" ngModel><i class="fas fa-pen"></i>
+        <!-- <small class="text-danger" [class.d-none]="mob.valid || mob.untouched">Mobile field is required and must be 10 digits</small> -->
+        <div *ngIf="mob.errors && (mob.valid || mob.touched)">
+            <small class="text-danger" *ngIf="mob.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Mobile Number is required</small>
+            <small class="text-danger" *ngIf="mob.errors.pattern"><i class="far fa-exclamation-circle"></i>&nbsp;Should only contain numeric values</small>
+            <small class="text-danger" *ngIf="mob.errors.minlength"><i class="far fa-exclamation-circle"></i>&nbsp;Invalid mobile number</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="email" name="mail" #mail="ngModel" [class.notvalid]="mail.invalid && mail.touched" placeholder="New email ID" pattern="[A-Za-z\d\._-]+@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,5})(\.[a-zA-Z]{2,5})?" required autocomplete="off" class="form-control" ngModel><i class="fas fa-pen"></i>
+        <div *ngIf="mail.errors && (mail.valid || mail.touched)">
+            <small class="text-danger" *ngIf="mail.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Email ID is required</small>
+            <small class="text-danger" *ngIf="mail.errors.pattern"><i class="far fa-exclamation-triangle"></i>&nbsp;Invalid email address</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="text" name="uname" placeholder="New username" #uname="ngModel" pattern="[a-z0-9\._]{1,20}" [class.notvalid]="uname.invalid && uname.touched" required autocomplete="off" class="form-control" ngModel><i class="fas fa-pen"></i>
+        <div *ngIf="uname.errors && (uname.valid || uname.touched)">
+            <small class="text-danger" *ngIf="uname.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Username is required</small>
+            <small class="text-danger" *ngIf="uname.errors.pattern"><i class="far fa-exclamation-triangle"></i>&nbsp;Invalid username : It should only contain alphabetic and numeric characters and not any special characters except '.' and '_'</small>
+        </div>
+    </div>
+    <input style="width: 10px; height: 10px; margin-left: 10px;" name="qw" id="qw" hidden type="checkbox"><label style="padding: 5px; margin-left: 20px; font-size: 12px;" id="here" for="qw">Do you want to change your current password?</label><label style="padding: 5px; margin-left: 20px; font-size: 12px; display: none;" for="qw" id="nohere">No, i don't want to change my password!</label>
+    <div class="form-group newpass" style="display: none;">
+        <input id="newp" type="password" style="width: 19em; margin-left: 10px;" name="npwd" placeholder="New Password" [class.notvalid]="pwd.invalid && pwd.touched" #pwd="ngModel" pattern="(?=.*[%$+@=#!?_*-])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9?*@!_\.#$%&-=+]{8,}" autocomplete="off" class="form-control" required="true" ngModel>
+        <div *ngIf="pwd.errors && (pwd.valid || pwd.touched)">
+            <small class="text-danger" *ngIf="pwd.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;New Password is required</small>
+            <small class="text-danger" *ngIf="pwd.errors.pattern"><i class="far fa-exclamation-triangle"></i>&nbsp;Invalid password : It should of minimum 8 characters and a combination of uppercase letter(A-Z), lowercase letter(a-z), digits(0-9) & special characters(!@#$%...)</small>
+        </div>
+    </div><hr>
+    <input type="password" id="cpwd" class="cpwd" placeholder="Current Password" [class.notvalid]="cpwd.invalid && cpwd.touched" name="cpwd" #cpwd="ngModel" ngModel required autocomplete="off">
+    <input type="submit" value="UPDATE" class="sub">
+    <div style="margin-top: -10px; margin-left: 30px;" *ngIf="cpwd.errors && (cpwd.valid || cpwd.touched)">
+    <marquee behavior="slide" direction="down"><small class="text-danger" style="margin-top: 0px;" *ngIf="cpwd.errors.required"><i class="far fa-exclamation-triangle"></i>&nbsp;Current Password is required for updation</small></marquee></div>
+</form>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+.page{
+    height: 89vh;
+    background: linear-gradient(45deg,rgb(27, 27, 27),rgb(26, 26, 26));
+}
+.content{
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content h1{
+    font-size: 5em;
+    font-family: 'Fredoka One', cursive;
+}
+.content h1 span:nth-child(1){
+    border: 10px solid white;
+    padding: 20px;
+    border-radius: 20px;
+}
+.qlinks{
+    text-align: center;
+    padding-bottom: 0px;
+}
+.qlinks h2{
+    font-family: 'Montserrat', 'Monte';
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.qlinks .area{
+    display: flex;
+    justify-content: center;
+    height: 170px;
+    margin-bottom: 0px;
+}
+
+.qlinks .part{
+    width: 270px;
+    height: 150px;
+    margin-left: -30px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.qlinks .part h3{
+    border: 2px solid cornflowerblue;
+    border-radius: 20px;
+    padding: 10px;
+    width: 180px;
+    height: 50px;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: .85s;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+.qlinks .part h3:hover{
+    width: inherit;
+    height: inherit;
+}
+
+.qlinks .part h3 a{
+    font-size: 15px;
+    margin: 20px;
+    display: block;
+    text-decoration: none;
+}
+

@@ -1,0 +1,111 @@
+.container{
+    width: 500px;
+    display: block;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    /* border: 2px solid black; */
+    font-family: 'Montserrat','Monte';
+}
+
+.total{
+    height: 570px;
+}
+
+small{
+    display: block;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+.container h1{
+    font-family: 'Montserrat','Monte';
+    letter-spacing: 3px;
+    margin-bottom: -20px;
+}
+
+.container input[type=text],
+.container input[type=password],
+.container input[type=email],
+.container input[type=tel]{
+    background: none;
+    text-align: center;
+    font-size: 14px;
+    display: inline-block;
+    border: 2px solid cornflowerblue;
+    border-radius: 50px;
+    width: 22em;
+    transition: .25s;
+    color: white;
+    outline: none; 
+}
+
+#cpwd{
+    padding: 10px;
+    margin-right: 10px;
+    width: 14em;
+}
+
+#here,#nohere{
+    color: grey;
+    transition: .5s;
+}
+
+#here:hover,#nohere:hover{
+    color: white;
+}
+
+.fa-pen{
+    margin-left: -30px;
+}
+
+.form-control{
+    outline: none;
+    box-shadow: none;
+}
+
+.notvalid{
+    box-shadow: 0 0 10px red;
+}
+
+.sub{
+   padding: 10px 30px; 
+   border: 2px solid orangered;
+   border-radius: 50px;
+   background: none;
+   color: white;
+   margin-top: 10px;
+   margin-bottom: 20px;
+   outline: none;
+   transition: .5s;
+   cursor: pointer;
+}
+
+.log .sub{
+    margin-bottom: 40px;
+}
+
+.container input[type=text]:focus,
+.container input[type=password]:focus,
+.container input[type=email]:focus,
+.container input[type=tel]:focus{
+    border: 2px solid greenyellow;
+}
+
+.sub:hover{
+    background: orangered;
+}
+
+hr{
+    display: none;
+}
+
+@media all and (max-width: 510px){
+    .container{
+        width: auto;
+    }
+    hr{
+        border: 1px solid rgba(0, 0, 0, 0.623);
+        display: block;
+    }
+}

@@ -1,0 +1,67 @@
+<div class="total">
+    <table class="main" align="center">
+        <th>
+            Expenses Category
+        </th>
+        <tr>
+            <td align="center">
+                <form #ecat="ngForm" (ngSubmit)="addExpenseCategory(cid.value)">
+                    <input type="text" name="idval" id="idvalue" value="" #cid="ngModel" hidden
+                        [(ngModel)]="expenseCategory.id" style="width: 50px; height: 50px;">
+                    <div class="form-group" style="margin-top: 20px;">
+                        <input placeholder="Category Name" required #cname="ngModel" [(ngModel)]="expenseCategory.name"
+                            [class.notvalid]="cname.invalid && cname.touched" type="text" name="cname"
+                            autocomplete="off" class="form-control">
+                        <small class="text-danger" [class.d-none]="cname.valid || cname.untouched">Category name is
+                            required</small>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Category Details" required #cdet="ngModel"
+                            [(ngModel)]="expenseCategory.details" [class.notvalid]="cdet.invalid && cdet.touched"
+                            name="cdetails" class="form-control"></textarea>
+                        <small class="text-danger" [class.d-none]="cdet.valid || cdet.untouched">Category details is
+                            required</small>
+                    </div>
+                    <input type="submit" value="SUBMIT" [hidden]="ecat.invalid" (click)="untouch(ecat.form)"
+                        class="sub">
+                </form>
+            </td>
+        </tr>
+    </table>
+    <div class="alert-success alert alertbox" *ngIf="message">
+        {{message}}
+    </div>
+    <div class="nocat" *ngIf="details.length == 0">
+        <img src="../../assets/empty1.svg" style="margin-top: 30px; width: 450px; height: 200px;" alt="" srcset="">
+        <h3>No categories added yet</h3>
+    </div>
+    <table class="cat-table" id="cat-table" align="center" border="3" width="80%" *ngIf="details.length != 0">
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th>Category Details</th>
+                <th width="10%">Edit</th>
+                <th width="10%">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let detail of details | paginate: { id: 'pagination', 
+            itemsPerPage : items,
+            currentPage : page,
+            totalItems : totalRecords}">
+                <td>{{detail.name}}</td>
+                <td>{{detail.details}}</td>
+                <td style="color: rgba(255, 255, 255, 0.733); background: transparent; border: none;"><i (click)="updateExpenseCategory(detail.id,detail.name,detail.details)" class="fas fa-pen"></i>
+                </td>
+                <td style="color: rgba(255, 255, 255, 0.733); background: transparent; border: none;"><i (click)="removeExpenseCategory(detail.id,detail.name)" class="fas fa-trash"></i></td>
+            </tr>
+            <tr *ngIf="totalRecords > items">
+                <td colspan="4">
+                    <div id="pagn">
+                        <pagination-controls id="pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

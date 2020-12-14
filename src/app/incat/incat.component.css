@@ -1,0 +1,127 @@
+@font-face{
+    font-family: Monte;
+    src: url("src\assets\fonts\Montserrat-Regular.ttf");
+  }
+
+.main{
+    /* border: 2px solid black; */
+    /* border-radius: 30px; */
+    font-family: 'Montserrat','Monte';
+    /* margin-top: 40px; */
+    width: 400px;
+    text-align: center;
+}
+
+.main th{
+    background-color: black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 23px;
+    text-transform: uppercase;
+    padding: 10px 10px;
+}
+
+.sub{
+    padding: 10px 30px; 
+    border: 2px solid orangered;
+    border-radius: 50px;
+    background: none;
+    color: white;
+    margin-bottom: 10px;
+    outline: none;
+    transition: .5s;
+    cursor: pointer;
+ }
+
+ .sub:hover{
+    background: orangered;
+}
+
+.main input[type=text]{
+    width: 350px;
+    background: none;
+    margin-top: 10px;
+    color: white;
+    border: 2px solid cornflowerblue;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 15px;
+    transition: 0.5s;
+}
+
+.main textarea{
+    width: 350px;
+    height: 100px;
+    color: white;
+    outline: none;
+    background: none;
+    border: 2px solid cornflowerblue;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 15px;
+    transition: .5s;
+    resize: none;
+    box-shadow: rgba(255, 255, 255, 0);
+}
+
+.form-control{
+    outline: none;
+    box-shadow: none;
+}
+
+.total{
+    overflow: hidden;
+}
+
+.main input[type=text]:focus,
+.main textarea:focus{
+    border: 2px solid greenyellow;
+}
+
+.notvalid{
+    box-shadow: 0 0 15px red;
+}
+
+.total{
+    height: 570px;
+    padding-bottom: 10px;
+}
+
+small{
+    display: block;
+    margin-top: 5px;
+    font-size: 13px;
+    transition: .5s;
+}
+
+@media all and (max-width: 800px){
+    .main{
+        width: 350px;
+    }
+
+    .main th{
+        font-size: 20px;
+    }
+
+    .main input[type=text]{
+        width: 280px;
+    }
+
+    .main textarea{
+        width: 280px;
+    }
+}
+
+@media all and (max-width: 370px){
+    .main{
+        border: none;
+        width: 290px;
+    }
+    .main input[type=text],
+    .main textarea{
+        width: 240px;
+    }
+    .main th{
+        font-size: 19px;
+    }
+}

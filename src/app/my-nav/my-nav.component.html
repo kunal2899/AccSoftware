@@ -1,0 +1,41 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>MASTERS</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="/expenses-cat" routerLink="expenses-cat"><span></span>EXPENSES CATEGORY</a>
+      <a mat-list-item href="/income-cat" routerLink="income-cat"><span></span>INCOME CATEGORY</a>
+      <a mat-list-item href="/expenses" routerLink="expenses"><span></span>EXPENSES</a>
+      <a mat-list-item href="/income" routerLink="income"><span></span>INCOME</a>
+      <a mat-list-item href="/cash-book" routerLink="cash-book"><span></span>CASH BOOK</a>
+      <a mat-list-item href="/bank-book" routerLink="bank-book"><span></span>BANK BOOK</a>
+      <a mat-list-item href="/day-book" routerLink="day-book"><span></span>DAY BOOK</a>
+      <a mat-list-item href="/bal-sheet" routerLink="bal-sheet"><span></span>BALANCE SHEET</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        style="outline: none;"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <!-- <mat-icon aria-label="Side nav toggle icon">menu</mat-icon> -->
+        <i class="fas fa-bars" style="font-size: 20px;"></i>
+      </button>
+      <span class="brand" disabled>AccSoftware</span>
+      <div class="link-grp">
+        <span class="sel">
+          <a href='/home' routerLink="home" style="text-decoration: none; color: white;" class="nav-link" title="Home"><i class="fal fa-home-alt"></i></a>
+          <a href='/update-profile' routerLink="update-profile" class="nav-link" title="Update Profile" style="text-decoration: none; color: white;"><i class="fal fa-user-edit"></i></a>
+        </span>
+        <a class="nav-link" title="Logout" (click)="logout()"><i class="fal fa-sign-out-alt"></i></a>
+      </div>
+    </mat-toolbar>
+  <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
