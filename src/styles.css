@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+
+body{
+    background-color: rgb(27, 27, 27);
+    font-family: 'Montserrat', sans-serif;
+}
+.total{
+    background: rgb(27, 27, 27);
+    /* position: absolute; */
+    margin: 0;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    height: 91vh;
+    position: relative;
+}
+
+.ngx-pagination {
+    padding-left: 0px !important;
+  }
+  
+  .ngx-pagination .current,
+  .btn-info {
+    background: rgb(22, 22, 22) !important;
+    border: transparent !important;
+    border-radius: 50px !important;
+    transition: .5s;
+  }
+  
+  .ngx-pagination .current:hover {
+    background: rgb(22, 22, 22) !important;
+    border-radius: 50px !important; 
+    border: transparent !important;
+  }
+
+  .ngx-pagination a{
+    transition: .5s;
+    padding: 3px;
+    margin: 5px;
+    font-size: 15px !important;
+    outline: none !important;
+      box-shadow: none !important;
+  }
+
+  .ngx-pagination a:hover{
+      text-decoration: none;
+      border-radius: 60px;
+      /* border: 2px solid rgb(22, 22, 22); */
+      background: transparent;
+  }
+
+  .ngx-pagination .disabled{
+     margin: 15px;
+  }
+  
+  
