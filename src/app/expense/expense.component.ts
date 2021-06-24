@@ -1,24 +1,22 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { $ } from 'protractor';
+import { FormGroup } from '@angular/forms';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { ExpenseCategories } from '../expcat/expcat.component';
 import { ExpCatService } from '../services/ecat/exp-cat.service';
 import { ExpService } from '../services/expense/exp.service';
 import { UserService } from '../user.service';
 
 export class Expenses {
-
-
   constructor(
     public id:number,
     public name:string,
     public amount:number,
     public payby:string,
     public remark:string,
-    public dat:Date,
-    public ecId:number,
-    public uid:number
+    public date:Date,
+    public expCatId:number,
+    public userId:number
   ){}
 
   public getId(){
@@ -46,15 +44,15 @@ export class Expenses {
   }
 
   public getDate(){
-    return this.dat;
+    return this.date;
   }
 
   public getEcId(){
-    return this.ecId;
+    return this.expCatId;
   }
 
   public getUserId(){
-    return this.uid;
+    return this.userId;
   }
 
 }
@@ -66,30 +64,34 @@ export class Expenses {
 })
 export class ExpenseComponent implements OnInit {
 
-  constructor(private service:ExpCatService, private us:UserService, private es:ExpService) { 
-    // this.expense = new Expenses(0,'',"amount",'Cash','',new Date(),0,us.getAuthenticatedUserId());
-    // let dt = new Date().toLocaleDateString("fr-CA");
-    // let dt = new Date()
-    // var datepipe = new DatePipe("en-US");
-    //   let formatted = datepipe.transform(dt,"yyyy-MM-dd");
-    //   alert(new Date(formatted))
-    this.expense = new Expenses(0,'',0,'Cash','',new Date(),0,us.getAuthenticatedUserId());
-  }
-
   category: ExpenseCategories[];
   message:string;
   err:string;
   expense:Expenses;
+  anyof:boolean
+  config: Partial<BsDatepickerConfig>;
+
+  constructor(private service:ExpCatService, private us:UserService, private es:ExpService) { 
+    let now = new Date()
+    this.expense = new Expenses(0,'',0,'Cash','',now,0,us.getAuthenticatedUserId());
+    this.config = Object.assign({},{ containerClass : 'theme-dark-blue', showWeekNumbers: false,
+      dateInputFormat: 'DD-MM-YYYY' });
+  }
 
   ngOnInit(): void {
     this.service.findAllExpenseCategoriesByUserId(this.us.getAuthenticatedUserId()).subscribe(
       response => {
-        this.category = response;
+        this.category = response
+        this.anyof = (this.category.length != 0)?true:false
+
+      },
+      error=>{
+        console.log(error)
       }
     );
   }
 
-  public paymodes = ['Cash','Cheque'];
+  public paymodes = ['Cash','Bank'];
   catHasError = false;
   pbHasError = true;
 
@@ -101,22 +103,26 @@ export class ExpenseComponent implements OnInit {
 
   addExpense(form:FormGroup){
     if(form.valid){
-      var datepipe = new DatePipe("en-US");
-      let formatted = datepipe.transform(this.expense.dat,"MM/dd/yyyy");
-      alert(formatted)
-      this.expense.dat = new Date(formatted)
+     
       this.catHasError = false
+
+      console.log(this.expense.date);
+      
       this.es.addExpense(this.expense).subscribe(
         response => {
           console.log(response)
           this.message = 'New Expense named "' + this.expense.getName() + '" added successfully!'
+          let now = new Date()
+          this.expense = new Expenses(0,'',0,'Cash','',now,0,this.us.getAuthenticatedUserId());
         },
         error => {
           console.log(error)
           this.err = "Server facing issues right now, Try to adding later."
-          this.expense = new Expenses(0,'',0,'Cash','',new Date(),0,this.us.getAuthenticatedUserId());
+          let now = new Date()
+          this.expense = new Expenses(0,'',0,'Cash','',now,0,this.us.getAuthenticatedUserId());
         }
       );
+      
       setTimeout(()=>this.message = '',3000);
       setTimeout(()=>this.err = '',3000);
     }
@@ -125,6 +131,7 @@ export class ExpenseComponent implements OnInit {
       form.get('payby').markAsUntouched()
       this.catHasError = true
     }
+    
   }
 
   public validateCat(n){

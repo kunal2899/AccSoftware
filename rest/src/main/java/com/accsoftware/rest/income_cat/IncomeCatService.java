@@ -17,17 +17,21 @@ public class IncomeCatService {
 		return er.findAll();
 	}
 	
-	public IncomeCat get(Long Id) {
-		Optional<IncomeCat> o = er.findById(Id);
-		return o.get();
+	public List<IncomeCat> getAll(Long uid){
+		return er.findAllByUserId(uid);
 	}
 	
-	public void create(IncomeCat e) {
-		er.save(e);
+	public Optional<IncomeCat> get(Long Id) {
+		 return er.findById(Id);
 	}
 	
-	public void update(IncomeCat e) {
+	public Long create(IncomeCat e) {
 		er.save(e);
+		return e.getId();
+	}
+	
+	public IncomeCat update(IncomeCat e) {
+		return er.save(e);
 	}
 	
 	public void remove(Long Id) {

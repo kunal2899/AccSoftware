@@ -32,6 +32,7 @@ public class Incomes {
 	private String recieveby;
 	private String remark;
 	private Date date;
+	private Long userId;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name =  "icat_id", referencedColumnName = "id")
@@ -41,15 +42,19 @@ public class Incomes {
 		this.name =  new String();
 		this.recieveby =  new String();
 		this.remark =  new String();
+		this.date =  new Date();
 	}
 
-	public Incomes(Long id, String name, double amount, String recieveby, String remark, Date date, IncomeCat ic) {
+
+	public Incomes(Long id, String name, double amount, String recieveby, String remark, Date date,
+			IncomeCat ic, Long userId) {
 		this.id = id;
 		this.name = name;
 		this.amount = amount;
 		this.recieveby = recieveby;
 		this.remark = remark;
 		this.date = date;
+		this.userId = userId;
 		this.ic = ic;
 	}
 
@@ -101,6 +106,16 @@ public class Incomes {
 		this.date = date;
 	}
 
+	public Long getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+
 	public IncomeCat getIc() {
 		return ic;
 	}
@@ -108,6 +123,7 @@ public class Incomes {
 	public void setIc(IncomeCat ic) {
 		this.ic = ic;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -122,8 +138,10 @@ public class Incomes {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((recieveby == null) ? 0 : recieveby.hashCode());
 		result = prime * result + ((remark == null) ? 0 : remark.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -182,12 +200,20 @@ public class Incomes {
 		} else if (!remark.equals(other.remark)) {
 			return false;
 		}
+		if (userId == null) {
+			if (other.userId != null) {
+				return false;
+			}
+		} else if (!userId.equals(other.userId)) {
+			return false;
+		}
 		return true;
 	}
+
 
 	@Override
 	public String toString() {
 		return "Incomes [id=" + id + ", name=" + name + ", amount=" + amount + ", recieveby=" + recieveby + ", remark="
-				+ remark + ", date=" + date + ", ic=" + ic + "]";
+				+ remark + ", date=" + date + ", userId=" + userId + ", ic=" + ic + "]";
 	}
 }

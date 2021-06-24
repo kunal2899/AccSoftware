@@ -11,6 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.accsoftware.rest.expenses.Expenses;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ExpenseCat {
@@ -30,6 +31,7 @@ public class ExpenseCat {
 	private String details;
 	private Long userId;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "ec")
 	List<Expenses> expensesList;
 	

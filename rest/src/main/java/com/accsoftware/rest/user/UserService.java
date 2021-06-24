@@ -12,9 +12,8 @@ public class UserService {
 	@Autowired
 	UserRepository ur;
 	
-	public Long add(User u) {
+	public void add(User u) {
 		ur.save(u);
-		return u.getId();
 	}
 	
 	public User update(User u) {

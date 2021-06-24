@@ -28,26 +28,23 @@ findAllUsers(){
 }
 
 findUserById(uid){
-  return this.http.get<User>(`${APP_URL}/users/${uid}`);
+  return this.http.get<User>(`${APP_URL}/users/${uid}`,CORS_HEADERS);
 }
 
 findUserByUsername(uname){
-  return this.http.get<User>(`${APP_URL}/user/${uname}`);
+  return this.http.get<User>(`${APP_URL}/user/${uname}`,CORS_HEADERS);
 }
 
-addUser(u){
-  // var headers = new HttpHeaders()
-  // headers.set("Access-Control-Allow-Origin" , "*")
-  // headers.set("Access-Control-Allow-Methods" , "GET,POST,OPTIONS,DELETE,PUT")
-  return this.http.post(`${APP_URL}/users`,u);
+addUser(u:User){
+  return this.http.post(`${APP_URL}/users/add-user`,u, CORS_HEADERS);
 }
 
 updateUser(uid,u){
-  return this.http.put<User>(`${APP_URL}/users/${uid}`,u);
+  return this.http.put<User>(`${APP_URL}/users/update-user/${uid}`,u);
 }
 
 removeUser(uid){
-  return this.http.delete<String>(`${APP_URL}/users/${uid}`);
+  return this.http.delete<String>(`${APP_URL}/remove-user/${uid}`);
 }
 
 authenticate(username: string, password: string) {

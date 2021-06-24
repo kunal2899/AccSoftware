@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'update-profile', component: UpdateProfileComponent },
       { path: 'expenses-cat', component: ExpcatComponent },
-      { path: 'expenses-cat/:id', component: ExpcatComponent },
+      // { path: 'expenses-cat/:id', component: ExpcatComponent },
       { path: 'income-cat', component: IncatComponent },
       { path: 'expenses', component: ExpenseComponent },
       { path: 'income', component: IncomeComponent },

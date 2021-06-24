@@ -83,7 +83,7 @@ public class ExpensesDTO {
 	}
 	
 	public Expenses getExpense() {
-		return new Expenses(id,name,amount,payby,remark,date,userId);
+		return new Expenses(id,name,amount,payby,remark,date,userId,null);
 	}
 	@Override
 	public int hashCode() {

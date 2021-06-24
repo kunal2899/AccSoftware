@@ -96,6 +96,14 @@ small{
     margin: 20px 0px;
 }
 
+#pagn{
+    display: flex;
+    justify-content: center;
+    width: auto;
+    height: 60px;
+    padding: 0;
+}
+
 .nocat{
     display: flex;
     align-items: center;
@@ -105,14 +113,6 @@ small{
     padding: 10px;
     height: 150px;
     font-family: 'Montserrat';
-}
-
-#pagn{
-    display: flex;
-    justify-content: center;
-    width: auto;
-    height: 60px;
-    padding: 0;
 }
 
 .nocat h3{

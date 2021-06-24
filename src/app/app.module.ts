@@ -30,9 +30,10 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpIntercepterBasicAuthService } from './services/http/http-intercepter-basic-auth.service';
 import { HomeComponent } from './home/home.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
+// import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ExpiredComponent } from './expired/expired.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 
@@ -68,8 +69,8 @@ import { ExpiredComponent } from './expired/expired.component';
     MatIconModule,
     MatListModule,
     MatTableModule,
-    MatPaginatorModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     ToDashGuard,

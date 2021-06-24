@@ -41,6 +41,8 @@ export class ExpcatComponent implements OnInit {
   page:number = 1
   items:number = 3
 
+  anyof:boolean
+
   constructor(
     private service: ExpCatService,
     private us: UserService,
@@ -54,12 +56,10 @@ export class ExpcatComponent implements OnInit {
       response => {
         this.details = response;
         this.totalRecords = this.details.length
+        this.anyof = (this.totalRecords != 0)?true:false;
       },
       error => {
         console.log(error)
-        alert('Session expired, Please login to continue!')
-        this.us.logout()
-        this.router.navigate(['log-reg']);
       }
     );
   }

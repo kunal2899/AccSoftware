@@ -52,18 +52,9 @@ public class Expenses {
 		this.name =  new String();
 		this.payby =  new String();
 		this.remark =  new String();
+		this.date = new Date();
 	}
 
-	
-	public Expenses(Long id, String name, double amount, String payby, String remark, Date date, Long userId) {
-		this.id = id;
-		this.name = name;
-		this.amount = amount;
-		this.payby = payby;
-		this.remark = remark;
-		this.date = date;
-		this.userId = userId;
-	}
 
 	public Expenses(Long id, String name, double amount, String payby, String remark, Date date, Long userId,
 			ExpenseCat ec) {
@@ -129,7 +120,7 @@ public class Expenses {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Date	 date) {
 		this.date = date;
 	}
 

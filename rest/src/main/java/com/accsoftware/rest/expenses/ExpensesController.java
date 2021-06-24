@@ -50,6 +50,16 @@ public class ExpensesController {
 		return es.getAll();
 	}
 	
+	@GetMapping("/{uid}/expenses/{start}/{end}")
+	public List<Expenses> getInRange(@PathVariable Long uid, @PathVariable String start, @PathVariable String end){
+		return es.getInRange(uid, es.toDate(start), es.toDate(end));
+	}
+	
+	@GetMapping("/{uid}/expenses/{pb}/{start}/{end}")
+	public List<Expenses> getByRange(@PathVariable Long uid,@PathVariable String pb ,@PathVariable String start, @PathVariable String end){
+		return es.getByRange(uid,pb,es.toDate(start), es.toDate(end));
+	}
+	
 	@GetMapping("/expenses/{id}")
 	public ResponseEntity<?> getExpense(@PathVariable Long id) {
 		Optional<Expenses> o = es.get(id);
@@ -62,8 +72,7 @@ public class ExpensesController {
 	}
 	
 	@DeleteMapping("/expenses/{id}")
-	public ResponseEntity<?> removeExpense(@PathVariable Long id) {
+	public void removeExpense(@PathVariable Long id) {
 		es.remove(id);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 }

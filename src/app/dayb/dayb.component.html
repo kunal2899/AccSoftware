@@ -1,41 +1,125 @@
-<table id="t1" align="center" width="100%" border=2>
-    <tr id="hd">
-        <td rowspan="2" width="10%">DAY BOOK</td>
-        <td colspan="4">Date</td>
-        <td rowspan="2" width="16%"><input id="sub" name="btnShow" type="submit" value="SHOW"></td>
-    </tr>
-    <tr id="hd">
-        <td width="37%" colspan="2">from &nbsp;<input id="datee" type="date" required></td>
-        <td width="30%" colspan="2">to &nbsp;<input id="datee" type="date" required></td>
-    </tr>
-    <tr id="hd">
-        <td>S.No.</td>
-        <td> Account Name</td>
-        <td width="14%">Date</td>
-        <td width="13%">Amount<br>( in &#8377; )</td>
-        <td>Pay/Recieve by</td>
-        <td>Remark</td>
-    </tr>
-    <tr>
-        <td colspan="6" id="hd2" align="center">EXPENSES</td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Electricity Bill</td>
-        <td>03-29-2020</td>
-        <td>500</td>
-        <td>Cash</td>
-        <td>Bill</td>
-    </tr>
-    <tr>
-        <td colspan="6" id="hd2" align="center">INCOME</td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Consultancy Revenue</td>
-        <td>03-29-2020</td>
-        <td>10000</td>
-        <td>Cash</td>
-        <td>CR</td>
-    </tr>
-</table>
+<div class="total">
+    <h1>DAY BOOK</h1>
+    <div class="find">
+        <form #cbook="ngForm" (ngSubmit)="show(cbook.form)">
+            <div class="control">
+                <div>
+                    <div class="form-group">
+                        <label>From</label><input type="text" placeholder="dd-mm-yyyy" bsDatepicker [bsConfig]="config" autocomplete=off name="fdt" class="form-control datep" required
+                            [class.notvalid]="fdt.invalid && fdt.touched" #fdt="ngModel" [(ngModel)]="s">
+                    </div>
+                    <div class="form-group">
+                        <label>To</label><input type="text" placeholder="dd-mm-yyyy" bsDatepicker [bsConfig]="config" autocomplete=off name="tdt" class="form-control datep" required
+                            [class.notvalid]="tdt.invalid && tdt.touched" #tdt="ngModel" [(ngModel)]="e">
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Show" class="sub" [hidden]="cbook.invalid">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="nocat" *ngIf="result_fetched && !(anyexp || anyinc)">
+        <img src="../../assets/norecords.svg" style="margin-top: 30px; width: 250px; height: 150px;" alt="" srcset="">
+        <div class="headin">
+            <h3>No records found</h3>
+            <h5>between the date-range you mentioned</h5>
+        </div>
+    </div>
+    <div class="result" *ngIf="result_fetched && (anyexp || anyinc)">
+        <div class="expenses">
+            <div class="nocat notadded" *ngIf="!anyexp">
+                <h2>No Expenses Added yet!</h2>
+                <button class="sub" style=" width: fit-content; margin-left: 20px;"><a href="/dashboard/expenses">Add one</a></button>
+            </div>
+            <table class="cat-table" align="center" width="90%" *ngIf="anyexp">
+                <thead>
+                    <tr>
+                        <th class="tablehead" colspan=6>EXPENSES</th>
+                    </tr>
+                    <tr>
+                        <th width="10%">S.No.</th>
+                        <th width="25%">Account Name</th>
+                        <th width="20%">Date</th>
+                        <th width="15%">Amount<br>( in &#8377; )</th>
+                        <th width="10%">Pay / Recieve by</th>
+                        <th width="20%">Remark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let e of exp | paginate: { id: 'epag', 
+                    itemsPerPage : items,
+                    currentPage : epage,
+                    totalItems : totalExp}">
+                        <td>{{exp.indexOf(e) + 1}}</td>
+                        <td>{{e.name}}</td>
+                        <td>{{e.date}}</td>
+                        <td>{{e.amount}}</td>
+                        <td>{{e.payby}}</td>
+                        <td>{{e.remark}}</td>
+                    </tr>
+                    <tr *ngIf="totalExp > items">
+                        <td colspan="6">
+                            <div class="pag">
+                                <pagination-controls id="epag" maxSize="5" directionLinks="true"
+                                    (pageChange)="epage = $event"></pagination-controls>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="navigation">
+                <div class="inc">
+                    <button (click)="toggles('i')"><h1>Incomes</h1><i class="fad fa-angle-right"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="incomes">
+            <div class="nocat notadded" *ngIf="!anyinc">
+                <h2>No incomes Added yet!</h2>
+                <button class="sub" style=" width: fit-content; margin-left: 20px;"><a href="/dashboard/income">Add one</a></button>
+            </div>
+            <table class="cat-table" align="center" width="90%" *ngIf="anyinc">
+                <thead>
+                    <tr>
+                        <th class="tablehead" colspan=6>INCOMES</th>
+                    </tr>
+                    <tr>
+                        <th width="10%">S.No.</th>
+                        <th width="25%">Account Name</th>
+                        <th width="20%">Date</th>
+                        <th width="15%">Amount<br>( in &#8377; )</th>
+                        <th width="10%">Pay / Recieve by</th>
+                        <th width="20%">Remark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let e of inc | paginate: { id: 'ipag', 
+                    itemsPerPage : items,
+                    currentPage : ipage,
+                    totalItems : totalInc}">
+                        <td>{{inc.indexOf(e) + 1}}</td>
+                        <td>{{e.name}}</td>
+                        <td>{{e.date}}</td>
+                        <td>{{e.amount}}</td>
+                        <td>{{e.recieveby}}</td>
+                        <td>{{e.remark}}</td>
+                    </tr>
+                    <tr *ngIf="totalInc > items">
+                        <td colspan="6">
+                            <div class="pag">
+                                <pagination-controls id="ipag" maxSize="5" directionLinks="true"
+                                    (pageChange)="ipage = $event"></pagination-controls>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="navigation">
+                <div class="exp">
+                    <button (click)="toggles('e')"><i class="fad fa-angle-left"></i><h1>Expenses</h1></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

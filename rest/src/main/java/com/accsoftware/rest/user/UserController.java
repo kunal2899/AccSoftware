@@ -22,13 +22,13 @@ public class UserController {
 
 	@Autowired
 	UserService us;
-	
-	@PostMapping("/user")
+
+	@PostMapping("/users/add-user")
 	public void createUser(@RequestBody User e) {
 		 us.add(e);
 	}
 	
-	@PutMapping("/users")
+	@PutMapping("/users/update-user")
 	public ResponseEntity<?> updateUser(@RequestBody User e) {
 		e = us.update(e);
 		return new ResponseEntity<User>(e, HttpStatus.OK);
@@ -57,7 +57,7 @@ public class UserController {
 			return new ResponseEntity<String>("User not found",HttpStatus.NOT_FOUND);
 	}
 	
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("/remove-user/{id}")
 	public ResponseEntity<?> removeUser(@PathVariable Long id) {
 		us.remove(id);
 		return new ResponseEntity<String>("User removed successfully", HttpStatus.NO_CONTENT);

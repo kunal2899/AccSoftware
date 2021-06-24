@@ -19,8 +19,12 @@ export class ExpService {
   findExpenseById(id:number){
     return this.http.get<Expenses>(`${APP_URL}/expenses/${id}`)
   }
+  
+  findByRange(uid,start:Date,end:Date){
+    return this.http.get<Expenses[]>(`${APP_URL}/${uid}/expenses/${start}/${end}`)
+  }
 
-  public addExpense(e:Expenses){
+  addExpense(e:Expenses){
     return this.http.post(`${APP_URL}/expenses`,e,CORS_HEADERS);
   }
 

@@ -1,43 +1,103 @@
-<table id="t1" width="100%" border=2>
-    <tr id="hd">
-        <td rowspan="2" width="10%">BALANCE SHEET</td>
-        <td colspan="3"> Date</td>
-        <td rowspan="2" width="16%"><input id="sub" name="btnShow" type="submit" value="SHOW"></td>
-    </tr>
-    <tr id="hd"><td width="37%">from &nbsp;<input id="datee" type="date" required></td>
-        <td width="32%" colspan="2">to &nbsp;<input id="datee" type="date" required></td>
-    </tr>
-    <tr id="hd">
-        <td colspan="2">INCOMES</td>
-        <td colspan="3">EXPENSES</td>
-    </tr>
-</table>
-<table id="t2" width="50%" align="left">
-    <tr id="hd">
-        <td>Account Name</td>
-        <td>Amount</td>
-    </tr>
-    <tr>
-        <td>C Revenue</td>
-        <td>10000</td>
-    </tr>
-    <tr id="hd">
-        <td>Total</td>
-        <td>{{total_inc}}</td>
-    </tr>
-</table>
-<table id="t2" width="50%" align="right">
-    <tr id="hd">
-        <td>Account Name</td>
-        <td>Amount</td>
-    </tr>
-    <tr>
-        <td>Electricity Bill</td>
-        <td>500</td>
-    </tr>
-    <tr id="hd">
-        <td>Total</td>
-        <td>{{total_exp}}</td>
-    </tr>
-</table>
-<div class="gpro">Gross Profit : {{gp}}</div>
+<div class="total">
+    <h1>BALANCE SHEET</h1>
+    <div class="find">
+        <form #bsheet="ngForm" (ngSubmit)="show(bsheet.form)">
+            <div class="control">
+                <div>
+                    <div class="form-group">
+                        <label>From</label><input type="text" placeholder="dd-mm-yyyy" bsDatepicker [bsConfig]="config" autocomplete=off name="fdt" class="form-control datep" required
+                            [class.notvalid]="fdt.invalid && fdt.touched" #fdt="ngModel" [(ngModel)]="s">
+                    </div>
+                    <div class="form-group">
+                        <label>To</label><input type="text" placeholder="dd-mm-yyyy" bsDatepicker [bsConfig]="config" autocomplete=off name="tdt" class="form-control datep" required
+                            [class.notvalid]="tdt.invalid && tdt.touched" #tdt="ngModel" [(ngModel)]="e">
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Show" class="sub" [hidden]="bsheet.invalid">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="nocat" *ngIf="result_fetched && !(anyexp || anyinc)">
+        <img src="../../assets/norecords.svg" style="margin-top: 30px; width: 250px; height: 150px;" alt="" srcset="">
+        <div class="headin">
+            <h3>No records found</h3>
+            <h5>between the date-range you mentioned</h5>
+        </div>
+    </div>
+    <div class="result" *ngIf="result_fetched && (anyexp || anyinc)">
+            <div class="incomes">
+            <table class="cat-table" align="center" width="95%" *ngIf="anyinc">
+                <thead>
+                    <tr>
+                        <th class="tablehead" colspan=2>INCOMES</th>
+                    </tr>
+                    <tr>
+                        <th>Account Name</th>
+                        <th>Amount<br>( in &#8377; )</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let e of inc | paginate: { id: 'ipag', 
+                    itemsPerPage : items,
+                    currentPage : ipage,
+                    totalItems : totalInc}">
+                        <td>{{e.name}}</td>
+                        <td>{{e.amount}}</td>
+                    </tr>
+                    <tr *ngIf="totalInc > items">
+                        <td colspan="2">
+                            <div class="pag">
+                                <pagination-controls id="ipag" maxSize="5" directionLinks="true"
+                                    (pageChange)="ipage = $event"></pagination-controls>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="te" colspan="2">Total : {{total_inc}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="expenses">
+            <table class="cat-table" align="center" width="95%" *ngIf="anyexp">
+                <thead>
+                    <tr>
+                        <th class="tablehead" colspan=2>EXPENSES</th>
+                    </tr>
+                    <tr>
+                        <th>Account Name</th>
+                        <th>Amount<br>( in &#8377; )</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let e of exp | paginate: { id: 'epag', 
+                    itemsPerPage : items,
+                    currentPage : epage,
+                    totalItems : totalExp}">
+                        <td>{{e.name}}</td>
+                        <td>{{e.amount}}</td>
+                    </tr>
+                    <tr *ngIf="totalExp > items">
+                        <td colspan="2">
+                            <div class="pag">
+                                <pagination-controls id="epag" maxSize="5" directionLinks="true"
+                                    (pageChange)="epage = $event"></pagination-controls>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="te" colspan="2">Total : {{total_exp}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="gp" *ngIf="result_fetched && (anyexp || anyinc)">
+            <div class="showgp">
+                <h3>Gross Profit <img src="../../assets/stack-of-coins.png" height="50px" width="50px" style="opacity: 0.7;"> {{total_inc - total_exp}}</h3>
+            </div>
+        </div>
+    </div>
+    
+</div>

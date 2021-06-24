@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { User } from '../user';
+import { AUTHENTICATED_USER, UserService } from '../user.service';
 
 @Component({
   selector: 'app-update-profile',
@@ -8,7 +10,10 @@ import * as $ from 'jquery';
 })
 export class UpdateProfileComponent implements OnInit {
 
-  constructor() { }
+  user:User
+
+  constructor(private us:UserService) { }
+
 
   ngOnInit(): void {
     $(document).ready(function(){
@@ -22,6 +27,12 @@ export class UpdateProfileComponent implements OnInit {
           $('#newp').attr('required','false');
       });
     });
+
+    this.us.findUserByUsername(sessionStorage.getItem(AUTHENTICATED_USER)).subscribe(
+      data => {
+        this.user = data
+      }
+    );
   }
 
 }

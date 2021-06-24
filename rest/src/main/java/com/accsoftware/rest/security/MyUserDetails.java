@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.accsoftware.rest.user.User;
 
-@SuppressWarnings("serial")
 public class MyUserDetails implements UserDetails {
 	
 	User u;

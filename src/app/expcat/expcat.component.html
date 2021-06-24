@@ -31,11 +31,11 @@
     <div class="alert-success alert alertbox" *ngIf="message">
         {{message}}
     </div>
-    <div class="nocat" *ngIf="details.length == 0">
+    <div class="nocat" *ngIf="!anyof">
         <img src="../../assets/empty1.svg" style="margin-top: 30px; width: 450px; height: 200px;" alt="" srcset="">
         <h3>No categories added yet</h3>
     </div>
-    <table class="cat-table" id="cat-table" align="center" border="3" width="80%" *ngIf="details.length != 0">
+    <table class="cat-table" id="cat-table" align="center" border="3" width="80%" *ngIf="anyof">
         <thead>
             <tr>
                 <th>Category Name</th>
@@ -57,7 +57,7 @@
             </tr>
             <tr *ngIf="totalRecords > items">
                 <td colspan="4">
-                    <div id="pagn">
+                    <div class="pag">
                         <pagination-controls id="pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
                     </div>
                 </td>

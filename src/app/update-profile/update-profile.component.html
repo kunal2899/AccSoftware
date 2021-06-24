@@ -4,7 +4,7 @@
 <form #userReg="ngForm">
     <!-- <div class="text-danger">{{userReg.value | json}}</div> --><br>
     <div class="form-group" style="margin-top: 20px;">
-        <input type="text" name="name" #name="ngModel" placeholder="Name" pattern="[a-zA-Z' ']{1,20}" [class.notvalid]="name.invalid && name.touched" required autocomplete="off" class="form-control" ngModel><i class="fas fa-pen"></i>
+        <input type="text" name="name" #name="ngModel" placeholder="Name" pattern="[a-zA-Z' ']{1,20}" [class.notvalid]="name.invalid && name.touched" required autocomplete="off" class="form-control" [(ngModel)]="user.name"><i class="fas fa-pen"></i>
         <!-- <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name field is required</small> -->
         <div *ngIf="name.errors && (name.valid || name.touched)">
             <small class="text-danger" *ngIf="name.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Name is required</small>
@@ -12,11 +12,11 @@
         </div>
     </div>
     <div class="form-group">
-        <input type="text" name="add" #add="ngModel" placeholder="Address" [class.notvalid]="add.invalid && add.touched" required autocomplete="off" class="form-control" ngModel><i class="fas fa-pen"></i>
+        <input type="text" name="add" #add="ngModel" placeholder="Address" [class.notvalid]="add.invalid && add.touched" required autocomplete="off" class="form-control" [(ngModel)]="user.address"><i class="fas fa-pen"></i>
         <small class="text-danger" [class.d-none]="add.valid || add.untouched"><i class="far fa-exclamation-circle"></i>&nbsp;Address is required</small>
     </div>
     <div class="form-group">
-        <input type="tel" name="mob" #mob="ngModel" [class.notvalid]="mob.invalid && mob.touched" pattern="[0-9]{1,10}" minlength="10" maxlength="10" placeholder="New mobile number" required autocomplete="off" class="form-control" ngModel><i class="fas fa-pen"></i>
+        <input type="tel" name="mob" #mob="ngModel" [class.notvalid]="mob.invalid && mob.touched" pattern="[0-9]{1,10}" minlength="10" maxlength="10" placeholder="New mobile number" required autocomplete="off" class="form-control" [(ngModel)]="user.mobile"><i class="fas fa-pen"></i>
         <!-- <small class="text-danger" [class.d-none]="mob.valid || mob.untouched">Mobile field is required and must be 10 digits</small> -->
         <div *ngIf="mob.errors && (mob.valid || mob.touched)">
             <small class="text-danger" *ngIf="mob.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Mobile Number is required</small>
@@ -25,14 +25,14 @@
         </div>
     </div>
     <div class="form-group">
-        <input type="email" name="mail" #mail="ngModel" [class.notvalid]="mail.invalid && mail.touched" placeholder="New email ID" pattern="[A-Za-z\d\._-]+@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,5})(\.[a-zA-Z]{2,5})?" required autocomplete="off" class="form-control" ngModel><i class="fas fa-pen"></i>
+        <input type="email" name="mail" #mail="ngModel" [class.notvalid]="mail.invalid && mail.touched" placeholder="New email ID" pattern="[A-Za-z\d\._-]+@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,5})(\.[a-zA-Z]{2,5})?" required autocomplete="off" class="form-control" [(ngModel)]="user.email"><i class="fas fa-pen"></i>
         <div *ngIf="mail.errors && (mail.valid || mail.touched)">
             <small class="text-danger" *ngIf="mail.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Email ID is required</small>
             <small class="text-danger" *ngIf="mail.errors.pattern"><i class="far fa-exclamation-triangle"></i>&nbsp;Invalid email address</small>
         </div>
     </div>
     <div class="form-group">
-        <input type="text" name="uname" placeholder="New username" #uname="ngModel" pattern="[a-z0-9\._]{1,20}" [class.notvalid]="uname.invalid && uname.touched" required autocomplete="off" class="form-control" ngModel><i class="fas fa-pen"></i>
+        <input type="text" name="uname" placeholder="New username" #uname="ngModel" pattern="[a-z0-9\._]{1,20}" [class.notvalid]="uname.invalid && uname.touched" required autocomplete="off" class="form-control" [(ngModel)]="user.username"><i class="fas fa-pen"></i>
         <div *ngIf="uname.errors && (uname.valid || uname.touched)">
             <small class="text-danger" *ngIf="uname.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Username is required</small>
             <small class="text-danger" *ngIf="uname.errors.pattern"><i class="far fa-exclamation-triangle"></i>&nbsp;Invalid username : It should only contain alphabetic and numeric characters and not any special characters except '.' and '_'</small>

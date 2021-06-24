@@ -1,6 +1,8 @@
 <div class="total">
-    <div class="alert alert-sucess" *ngIf="message">{{message}}</div>
+    <div class="box" style="display: flex; align-items: center; justify-content: center;">
+    <div class="alert alert-success" *ngIf="message">{{message}}</div>
     <div class="alert alert-danger" *ngIf="err">{{err}}</div>
+    </div>
 <table class="main" align="center">
     <th>
         Expenses
@@ -14,12 +16,12 @@
                 </div>
                 <div class="form-group myselect">
                     <label>Category</label>
-                            <select (blur)="validateCat(cat.value)" (change)="validateCat(cat.value)" [class.notvalid]="catHasError && cat.touched && cat.value == 0" name="cat" class="form-control" #cat="ngModel" [(ngModel)]="expense.ecId">
+                            <select (blur)="validateCat(cat.value)" (change)="validateCat(cat.value)" [class.notvalid]="catHasError && cat.touched && cat.value == 0" name="cat" class="form-control" #cat="ngModel" [(ngModel)]="expense.expCatId">
                                 <option value="0"></option>
                                 <option *ngFor="let x of category" [value]='x.id'>{{x.name}}</option>
-                                <option *ngIf="category.length == 0">No categories added</option>
+                                <option *ngIf="!anyof">No categories added</option>
                             </select>
-                            <small class="text-danger" [class.d-none]="!catHasError || cat.untouched || category.length == 0 || cat.value != 0">Choose one of the categories</small>
+                            <small class="text-danger" [class.d-none]="!catHasError || cat.untouched || !anyof || cat.value != 0">Choose one of the categories</small>
                 </div>
                 <div class="form-group">
                     <span id="lbl">&#8377;</span><input type="number" placeholder="Amount" required #pri="ngModel" [(ngModel)]="expense.amount" [class.notvalid]="pri.invalid && pri.touched" name="pri" autocomplete="off" class="form-control">
@@ -38,7 +40,7 @@
                     <small class="text-danger" [class.d-none]="remark.valid || remark.untouched">Provide brief remark</small>
                 </div>
                 <div class="form-group">
-                    <label>Date</label><input type="date" name="dt" class="form-control" required [class.notvalid]="dt.invalid && dt.touched" #dt="ngModel" [(ngModel)]="expense.dat">
+                    <label>Date</label><input type="text" placeholder="dd-mm-yyyy" bsDatepicker [bsConfig]="config" autocomplete=off name="dt" class="form-control datep" required [class.notvalid]="dt.invalid && dt.touched" #dt="ngModel" [(ngModel)]="expense.date">
                     <small class="text-danger" [class.d-none]="dt.valid || dt.untouched">Date is required</small>
                 </div>
                 <input type="submit" value="SUBMIT" (click)="untouch(ecat.form)" class="sub">

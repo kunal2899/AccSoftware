@@ -3,10 +3,11 @@
     src: url("src\assets\fonts\Montserrat-Regular.ttf");
   }
 
+
 #datee {
     width: 72%;
     height: 30px;
-    font-family: 'Monteserrat','Monte';
+    font-family: 'Montserrat','Monte';
     font-size: 14px;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.082);
@@ -18,16 +19,13 @@
     color: white;
     /* border-left: none; */
 }
-.total{
-    padding: 10px;
-}
 #t1 {
-    /* margin-top: 10px; */
+    margin-top: 10px;
     /* width: 500px; */
     border-radius: 10px;
     border-style: solid;
     border-color: rgb(22, 22, 22);
-    font-family: 'Monteserrat','Monte';
+    font-family: 'Montserrat','Monte';
     color: white;
     text-align: center;
     border-radius: 5px;
@@ -36,26 +34,235 @@
 #hd{
     background-color: rgb(20, 20, 20);
 }
-#sub{
-    width: 93px;
-    height: 70px;
-    border-radius: 5px;
-    font-family: 'Monteserrat','Monte';
-    font-size: 17px;
-    color: white;
-    background-color: rgb(39, 39, 39);
-    border: rgb(10, 10, 10);
-    outline: none;
-    transition: 0.2s;
+
+.total{
+    height: 100%;
 }
-#sub:hover{
-    color: black;
-    background-color: cornflowerblue;
+
+.nocat{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-55%);
+    /* justify-content: center; */
+    margin: 30px;
+    margin-bottom: 0px;
+    padding: 10px;
+    height: 150px;
+    width: 600px;
+    font-family: 'Montserrat';
+}
+
+.nocat h3{
+    margin: 0;
+    /* position: absolute;
+    left: 70%;
+    transform: translateX(-70%); */
+    width: fit-content;
+    font-family: 'Quicksand';
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 2em;
+}
+
+.nocat .headin{
+    margin-left: -10px;
+}
+
+.nocat h5{
+    font-size: 1em;
+    font-family: 'Quicksand';
+}
+
+.find{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 60px;
+}
+
+
+.total h1{
+    text-align: center;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 3em;
+}
+
+.control{
+    display: grid;
+    margin-top: 20px;
+    height: 55vh;
+    /* border: 1px solid white; */
+    grid-template-rows: 70% 30%;
+    padding-top: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.control input[type=date]{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.additional{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 65% 35%;
+    width: 400px;
+    height: 170px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding-top: 0px;
+}
+
+.additional input[type=date]{
+    margin: 10px;
+    margin-left: 10px;
+    width: 200px;
+}
+
+.additional .form-group{
+    margin: 8px 0;
+}
+
+.additional .sub{
+    width: 90%;
+    padding: 10px;
+}
+[type=date]::-webkit-inner-spin-button{
+    appearance: none;
+    -webkit-appearance: none;
+}
+/* [type=date]::-webkit-calendar-picker-indicator {
+    background: url('../../assets/fontawesome-pro-master/web/svgs/regular/calendar-alt.svg') white 50% 50%;
+    background-blend-mode: screen;
+    background-size: 20px;
+    background-repeat: no-repeat;
+  } */
+
+  .control label{
+      /* margin-left: 20px; */
+      font-family: 'Montserrat';
+  }
+
+
+  .sub{
+    padding: 10px 30px; 
+    border: 2px solid orangered;
+    border-radius: 50px;
+    width: 60%;
+    background: none;
+    color: white;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    /* display: block; */
+    outline: none;
+    transition: .5s;
+    cursor: pointer;
+ }
+
+ .sub1{
+     position: absolute;
+     left: 50%;
+     transform: translateX(-50%);
+ }
+
+ .sub:hover{
+    background: orangered;
+}
+
+th{
+    cursor: pointer;
+}
+
+.datep{
+    width: 150px;
+    text-align: center;
+    margin-left: 10px;
+    display: inline-block;
+    background: none;
+    /* margin-top: 10px; */
+    margin-bottom: 10px;
+    color: white;
+    border: 2px solid cornflowerblue;
+    border-radius: 20px;
+    font-family: 'Montserrat';
+    padding: 8px;
+    letter-spacing: 2px;
+    font-size: 15px;
+    transition: .5s;
+    outline: none;
+    margin-top: 10px;
+    box-shadow: none;
+    padding-right: 10px;
 }
 
 .cbal{
-    font-size: 17px;
-    font-family: 'Monteserrat','Monte';
+    font-size: 20px;
+    font-family: 'Quicksand';
+    font-weight: 600;
     text-align: center;
-    margin: 10px;
+    margin-top: 20px;
+}
+
+.cat-table{
+    text-align: center;
+    margin-top: 30px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.753);
+    border: hidden;
+    border-color:rgb(22, 22, 22);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.cat-table i{
+    font-size: 20px;
+}
+
+.cat-table td,
+.cat-table th{
+    padding: 10px 5px;
+}
+
+.cat-table th{
+    background-color: rgb(22, 22, 22);
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.cat-table td{
+    background-color: rgb(34, 34, 34);
+    font-weight: 400;
+}
+
+@media all and (max-width: 500px){
+
+    .total h1{
+        font-size: 2em;
+        margin: 0;
+    }
+
+    .additional{
+        margin-top: 0;
+        width: 300px;
+    }
+
+    .additional label{
+        display: none;
+    }
+
+    .additional input[type=date]{
+        margin: 0;
+        margin-left: 10px;
+        width: 165px;
+    }
+
+    table{
+        margin-top: 0;
+    }
 }

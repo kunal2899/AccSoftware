@@ -37,8 +37,7 @@ public class User {
 		this.password = new String();
 	}
 
-	public User(Long id, String name, String address, String mobile, String email, String username, String password,
-			boolean isAdmin) {
+	public User(Long id, String name, String address, String mobile, String email, String username, String password, boolean isAdmin) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
