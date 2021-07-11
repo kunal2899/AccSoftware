@@ -5,6 +5,10 @@ html{
   background: rgb(27, 27, 27);
 }
 
+.total{
+  min-height: calc(100vh - 65px);
+}
+
 body{
   background: rgb(27, 27, 27);
   /* background: violet; */
@@ -30,7 +34,8 @@ body{
     margin: 0;
     padding-top: 40px;
     padding-bottom: 20px;
-    height: 91vh;
+    height: 100vh;
+    align-items: center;
     position: relative;
 }
 
@@ -85,4 +90,50 @@ body{
   .alert{
     text-align: center; width: auto; padding: 15px 60px; font-family: 'Quicksand'; font-weight: 500;
   }
+
+  .cat-table{
+    text-align: center;
+    margin-top: 30px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.753);
+    border: hidden;
+    border-color:rgba(22, 22, 22, 0.432);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.cat-table i{
+    font-size: 20px;
+}
+
+.cat-table td,
+.cat-table th{
+    padding: 10px 5px;
+}
+
+.cat-table th{
+    background-color: rgb(22, 22, 22);
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.cat-table td{
+    background-color: rgb(34, 34, 34);
+    font-weight: 400;
+}
+
+.notloaded{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notloaded i{
+  font-size: 3em;
+  animation: spin .85s infinite;
+}
+
+@keyframes spin {
+  to{
+    transform: rotate(360deg);
+  }
+}
 

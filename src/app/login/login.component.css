@@ -3,15 +3,35 @@
     src: url("../../assets/fonts/Montserrat-Regular.ttf");
   }
 
+.mbox{
+    position: absolute;
+    top: 20px;
+    color: white;
+}
+
+.brand{
+    font-size: 2em;
+    color: white;
+    font-family: 'Montserrat';
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
 .container{
-    width: 450px;
-    height: 600px;
+    max-width: 450px;
+    min-height: 80%;
     overflow: hidden;
     border: none;
-    /* position: absolute; */
-    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
     margin-top: 20px;
-    display: block;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-content: center;
     padding: 25px 40px;
@@ -23,9 +43,20 @@
 }
 small{
     display: block;
+    margin: 0 30px;
     margin-top: 5px;
-    font-size: 13px;
+    /* font-size: 12px; */
 }
+
+.container .log,
+.container .reg{
+    width: 100%;
+}
+
+.container .reg{
+    display: none;
+}
+
 .container .log{
     padding: 50px 0px;
 }

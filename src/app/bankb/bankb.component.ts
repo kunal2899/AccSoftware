@@ -5,6 +5,7 @@ import * as $ from 'jquery';
 import { BankBookService } from '../services/bbook/bank-book.service';
 import { UserService } from '../user.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { DatePipe } from '@angular/common';
 
 export class BankBook{
   constructor(
@@ -38,6 +39,7 @@ export class BankbComponent implements OnInit {
   page: number = 1
   items: number = 5
   anyrec
+  nloaded = false;
 
   ngOnInit(): void {
 
@@ -47,20 +49,25 @@ export class BankbComponent implements OnInit {
     if (form.valid) {
       let start, end
       this.page = 1
-      start = this.s.getFullYear() + '-' + this.s.getMonth()+1 + '-' + this.s.getDate()
-      end = this.e.getFullYear() + '-' + this.e.getMonth()+1 + '-' + this.e.getDate()
+      this.nloaded = true;
+      start = this.s.getFullYear() + '-' + (this.s.getMonth()+1) + '-' + this.s.getDate()
+      end = this.e.getFullYear() + '-' + (this.e.getMonth()+1) + '-' + this.e.getDate()
       $('.find').css('margin-bottom',0);
       $('.find .control').addClass("additional").removeClass("control")
       $('.find .control label').css('margin-left', '20px')
       this.cb.findAllinRange(this.us.getAuthenticatedUserId(),start,end).subscribe(
         response => {
+          this.nloaded = false
           this.result = response
           this.result_fetched = true;
           this.totalRecords = this.result.length
           this.anyrec = (this.totalRecords > 0) ? true : false
           this.result.forEach(x => {
-            x.date = x.date.split('T')[0]
-            x.date = x.date.split('-')[2] + '-' + x.date.split('-')[1] + '-' + x.date.split('-')[0]
+            let d = new Date(x.date);
+            let pipe = new DatePipe("en-US").transform(d,"dd-MM-yyyy",'+0530')
+            x.date = pipe
+            // x.date = x.date.split('T')[0]
+            // x.date = x.date.split('-')[2] + '-' + x.date.split('-')[1] + '-' + x.date.split('-')[0]
           })
         }
       )

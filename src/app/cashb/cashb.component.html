@@ -20,15 +20,18 @@
         </form>
     </div>
 
-    <div class="nocat" *ngIf="result_fetched && !anyrec">
-        <img src="../../assets/norecords.svg" style="margin-top: 30px; width: 250px; height: 150px;" alt="" srcset="">
-        <div class="headin">
+    <div class="nocat row" *ngIf="result_fetched && !anyrec && !nloaded">
+        <img src="../../assets/norecords.svg" class="col-lg-6 col-xl-6 col-md-12 col-sm-12" style="margin-top: 30px; width: 250px; height: 150px;" alt="" srcset="">
+        <div class="headin col-lg-6 col-xl-6 col-md-12 col-sm-12">
             <h3>No records found</h3>
             <h5>between the date-range you mentioned</h5>
         </div>
     </div>
+    <div class="nocat notloaded" *ngIf="nloaded">
+        <i class="fas fa-circle-notch"></i>
+    </div>
 
-    <div class="result" *ngIf="result_fetched && anyrec">
+    <div class="result" *ngIf="result_fetched && anyrec && !nloaded">
         <table class="cat-table" id="cash-book" align="center" width="90%">
             <thead>
                 <tr>

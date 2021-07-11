@@ -31,11 +31,14 @@
     <div class="alert-success alert alertbox" *ngIf="message">
         {{message}}
     </div>
-    <div class="nocat" *ngIf="!anyof">
+    <div class="nocat" *ngIf="!anyof && !nloaded">
         <img src="../../assets/empty1.svg" style="margin-top: 30px; width: 450px; height: 200px;" alt="" srcset="">
         <h3>No categories added yet</h3>
     </div>
-    <table class="cat-table" id="cat-table" align="center" border="3" width="80%" *ngIf="anyof">
+    <div class="nocat notloaded" *ngIf="nloaded">
+        <i class="fas fa-circle-notch"></i>
+    </div>
+    <table class="cat-table" id="cat-table" align="center" border="3" width="80%" *ngIf="anyof && !nloaded">
         <thead>
             <tr>
                 <th>Category Name</th>

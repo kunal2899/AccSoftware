@@ -8,6 +8,11 @@
     font-family: 'Montserrat','Monte';
 }
 
+.emsg{
+    font-size: 16px;
+    margin-top: 2em;
+}
+
 .total{
     height: 570px;
 }
@@ -56,6 +61,8 @@ small{
 }
 
 .fa-pen{
+    position: absolute;
+    margin-top: 10px;
     margin-left: -30px;
 }
 

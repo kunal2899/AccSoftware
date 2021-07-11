@@ -43,17 +43,21 @@ export class IncatComponent implements OnInit {
       this.incomeCategory = new IncomeCategories(0,'','',this.us.getAuthenticatedUserId())
      }
 
+  nloaded = false;
+
 
   refreshAllCategories() {
+    this.nloaded = true;
     this.service.findAllIncomeCategoriesByUserId(this.us.getAuthenticatedUserId()).subscribe(
       response => {
+        this.nloaded = false;
         this.details = response;
         this.totalRecords = this.details.length
         this.anyof = (this.totalRecords != 0)?true:false
       },
       error => {
+        this.nloaded = false;
         console.log(error)
-        alert(error)
       }
     );
   }

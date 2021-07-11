@@ -1,25 +1,28 @@
+<h2 class="brand">AccSoftware</h2>
 <div class="container">
+    <div class="mbox" *ngIf="rmsg">{{rmsg}}</div>
     <div class="log">
         <h1>Login</h1>
         <form #userLog="ngForm" (ngSubmit)="signIn(userLog.form)">
             <div class="form-group">
                 <input type="text" name="uname" placeholder="Username" #luname="ngModel" (click)="invalidCredentials=false" [class.notvalid]="luname.invalid && luname.touched" required autocomplete=off class="form-control" [(ngModel)]="username">
-                <small class="text-danger" [class.d-none]="luname.valid || luname.untouched"><i class="far fa-exclamation-circle"></i>&nbsp;Username is required</small>
+                <small class="text-danger" [class.d-none]="luname.valid || luname.untouched">Username is required</small>
             </div>
             <div class="form-group pass" style="position: relative;">
                 <input type="password" name="pwd" placeholder="Password" #lpwd="ngModel" (click)="invalidCredentials=false" [(ngModel)]="password" [class.notvalid]="lpwd.invalid && lpwd.touched" required autocomplete=off class="form-control">
                 <span id="eye" style="display: none; position: relative; transform: translate(0,-50%); left: -30px;"><i class="fas fa-eye"></i></span>
-                <small class="text-danger" [class.d-none]="lpwd.valid || lpwd.untouched"><i class="far fa-exclamation-circle"></i>&nbsp;Password is required</small>
+                <small class="text-danger" [class.d-none]="lpwd.valid || lpwd.untouched">Password is required</small>
             </div>
             <a href="#" class="text-secondary">Forgot Password</a><br>
-            <h4 class="text-danger" [class.d-none]="!invalidCredentials"><i class="far fa-exclamation-circle"></i>&nbsp;Invalid Credentials</h4>
-            <h4 class="text-danger" [class.d-none]="!isempty"><i class="far fa-exclamation-circle"></i>&nbsp;Username and Password is required</h4>
+            <h4 class="text-danger" [class.d-none]="!invalidCredentials">Invalid Credentials</h4>
+            <h4 class="text-danger" [class.d-none]="!isempty">Username and Password is required</h4>
             <button type="submit" value="LOGIN" class="sub">LOGIN</button><hr>
-            <div class="divine" [class.d-none]="((lpwd.invalid && lpwd.touched)&&(luname.invalid && luname.touched))">
+            <!-- [class.d-none]="((lpwd.invalid && lpwd.touched)&&(luname.invalid && luname.touched))" -->
+            <div class="divine">
                 <h4>Don't have an account?</h4>
-                <button class="sign" id="show-reg">Sign up</button>
+                <button type="reset" class="sign" id="show-reg">Sign up</button>
             </div>
-            <div [class.d-none]="!((lpwd.invalid && lpwd.touched)&&(luname.invalid && luname.touched))"><br><br></div>
+            <!-- <div [class.d-none]="!((lpwd.invalid && lpwd.touched)&&(luname.invalid && luname.touched))"><br><br></div> -->
         </form>
     </div>
     <div class="reg">
@@ -30,49 +33,50 @@
                 <input type="text" name="name" #name="ngModel" placeholder="Name" pattern="[a-zA-Z' ']{1,20}" [class.notvalid]="name.invalid && name.touched" required autocomplete="off" class="form-control" [(ngModel)]="u.name">
                 <!-- <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name field is required</small> -->
                 <div *ngIf="name.errors && (name.valid || name.touched)">
-                    <small class="text-danger" *ngIf="name.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Name is required</small>
-                    <small class="text-danger" *ngIf="name.errors.pattern"><i class="far fa-exclamation-circle"></i>&nbsp;Should only contain alphabets (A-Z,a-z)</small>
+                    <small class="text-danger" *ngIf="name.errors.required">Name is required</small>
+                    <small class="text-danger" *ngIf="name.errors.pattern">Should only contain alphabets (A-Z,a-z)</small>
                 </div>
             </div>
             <div class="form-group">
                 <input type="text" name="add" #add="ngModel" placeholder="Address" [class.notvalid]="add.invalid && add.touched" required autocomplete="off" class="form-control" [(ngModel)]="u.address">
-                <small class="text-danger" [class.d-none]="add.valid || add.untouched"><i class="far fa-exclamation-circle"></i>&nbsp;Address is required</small>
+                <small class="text-danger" [class.d-none]="add.valid || add.untouched">Address is required</small>
             </div>
             <div class="form-group">
                 <input type="tel" name="mob" #mob="ngModel" [class.notvalid]="mob.invalid && mob.touched" pattern="[0-9]{1,10}" minlength="10" maxlength="10" placeholder="Mobile Number" required autocomplete="off" class="form-control" [(ngModel)]="u.mobile">
                 <!-- <small class="text-danger" [class.d-none]="mob.valid || mob.untouched">Mobile field is required and must be 10 digits</small> -->
                 <div *ngIf="mob.errors && (mob.valid || mob.touched)">
-                    <small class="text-danger" *ngIf="mob.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Mobile Number is required</small>
-                    <small class="text-danger" *ngIf="mob.errors.pattern"><i class="far fa-exclamation-circle"></i>&nbsp;Should only contain numeric values</small>
-                    <small class="text-danger" *ngIf="mob.errors.minlength"><i class="far fa-exclamation-circle"></i>&nbsp;Invalid mobile number</small>
+                    <small class="text-danger" *ngIf="mob.errors.required">Mobile Number is required</small>
+                    <small class="text-danger" *ngIf="mob.errors.pattern">Should only contain numeric values</small>
+                    <small class="text-danger" *ngIf="mob.errors.minlength">Invalid mobile number</small>
                 </div>
             </div>
             <div class="form-group">
                 <input type="email" name="mail" #mail="ngModel" [class.notvalid]="mail.invalid && mail.touched" placeholder="Email ID" pattern="[A-Za-z\d\._-]+@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,5})(\.[a-zA-Z]{2,5})?" required autocomplete="off" class="form-control" [(ngModel)]="u.email">
                 <div *ngIf="mail.errors && (mail.valid || mail.touched)">
-                    <small class="text-danger" *ngIf="mail.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Email ID is required</small>
-                    <small class="text-danger" *ngIf="mail.errors.pattern"><i class="far fa-exclamation-triangle"></i>&nbsp;Invalid email address</small>
+                    <small class="text-danger" *ngIf="mail.errors.required">Email ID is required</small>
+                    <small class="text-danger" *ngIf="mail.errors.pattern">Invalid email address</small>
                 </div>
             </div>
             <div class="form-group">
                 <input type="text" name="uname" placeholder="Username" #uname="ngModel" pattern="[a-z0-9\._]{1,20}" [class.notvalid]="uname.invalid && uname.touched" required autocomplete="off" class="form-control" [(ngModel)]="u.username">
                 <div *ngIf="uname.errors && (uname.valid || uname.touched)">
-                    <small class="text-danger" *ngIf="uname.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Username is required</small>
-                    <small class="text-danger" *ngIf="uname.errors.pattern"><i class="far fa-exclamation-triangle"></i>&nbsp;Invalid username : It should only contain alphabetic and numeric characters and not any special characters except '.' and '_'</small>
+                    <small class="text-danger" *ngIf="uname.errors.required">Username is required</small>
+                    <small class="text-danger" *ngIf="uname.errors.pattern">Invalid username : It should only contain alphabetic and numeric characters and not any special characters except '.' and '_'</small>
                 </div>
             </div>
             <div class="form-group">
                 <input type="password" name="pwd" placeholder="Password" [class.notvalid]="pwd.invalid && pwd.touched" #pwd="ngModel" pattern="(?=.*[%$+@=#!?_*-])(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9?*@!_\.#$%&-=+]{8,}" required autocomplete="off" class="form-control" [(ngModel)]="u.password">
                 <div *ngIf="pwd.errors && (pwd.valid || pwd.touched)">
-                    <small class="text-danger" *ngIf="pwd.errors.required"><i class="far fa-exclamation-circle"></i>&nbsp;Password is required</small>
-                    <small class="text-danger" *ngIf="pwd.errors.pattern"><i class="far fa-exclamation-triangle"></i>&nbsp;Invalid password : It should of minimum 8 characters and a combination of uppercase letter(A-Z), lowercase letter(a-z), digits(0-9) & special characters(!@#$%...)</small>
+                    <small class="text-danger" *ngIf="pwd.errors.required">Password is required</small>
+                    <small class="text-danger" *ngIf="pwd.errors.pattern">Invalid password<br>password must be have<br><span>- Minimum 8 characters<br>- Atleast 1 uppercase letter<br>- Atleast 1 lowercase letter<br>- Atleast 1 numeric digit<br>- Atleast 1 any special character</span> </small>
                 </div>
             </div>
             <input type="submit" value="REGISTER" class="sub"><br>
             <hr>
-            <div class="divine" [class.d-none]="(name.invalid && name.touched)||(add.invalid && add.touched)||(mob.invalid && mob.touched)||(mail.invalid && mail.touched)||(uname.invalid && uname.touched)||(pwd.invalid && pwd.touched)">
+            <!-- [class.d-none]="(name.invalid && name.touched)||(add.invalid && add.touched)||(mob.invalid && mob.touched)||(mail.invalid && mail.touched)||(uname.invalid && uname.touched)||(pwd.invalid && pwd.touched)" -->
+            <div class="divine">
                 <h4>Have an account?</h4>
-                <button id="show-log" class="sign">Sign In</button>
+                <button id="show-log" type="reset" class="sign">Sign In</button>
             </div>
         </form>
     </div>

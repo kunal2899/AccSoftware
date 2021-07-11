@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -39,6 +40,7 @@ export class CashbComponent implements OnInit {
   page: number = 1
   items: number = 5
   anyrec
+  nloaded = false
 
   ngOnInit(): void {
 
@@ -48,6 +50,7 @@ export class CashbComponent implements OnInit {
     if (form.valid) {
       let start, end
       this.page = 1
+      this.nloaded = true
       start = this.s.getFullYear() + '-' + (this.s.getMonth()+1) + '-' + this.s.getDate()
       end = this.e.getFullYear() + '-' +(this.e.getMonth()+1) + '-' + this.e.getDate()
       $('.find').css('margin-bottom',0);
@@ -56,12 +59,16 @@ export class CashbComponent implements OnInit {
       this.cb.findAllinRange(this.us.getAuthenticatedUserId(),start,end).subscribe(
         response => {
           this.result = response
+          this.nloaded = false
           this.result_fetched = true
           this.totalRecords = this.result.length
           this.anyrec = (this.totalRecords > 0) ? true : false
           this.result.forEach(x => {
-            x.date = x.date.split('T')[0]
-            x.date = x.date.split('-')[2] + '-' + x.date.split('-')[1] + '-' + x.date.split('-')[0]
+            let d = new Date(x.date);
+            let pipe = new DatePipe("en-US").transform(d,"dd-MM-yyyy",'+0530')
+            x.date = pipe
+            // x.date = x.date.split('T')[0]
+            // x.date = x.date.split('-')[2] + '-' + x.date.split('-')[1] + '-' + x.date.split('-')[0]
           })
         }
       )

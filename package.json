@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -22,11 +23,14 @@
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
     "@fortawesome/fontawesome-free": "^5.13.0",
+    "@types/bcrypt": "^5.0.0",
     "angular-datatables": "^10.0.0",
+    "bcrypt": "^5.0.1",
     "jquery": "^3.5.1",
     "jsonwebtoken": "^8.5.1",
     "ngx-bootstrap": "^6.2.0",
     "ngx-pagination": "^5.0.0",
+    "node-gyp": "^8.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -39,7 +43,7 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/jquery": "^3.5.4",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.20.15",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",

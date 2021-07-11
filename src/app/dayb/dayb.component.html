@@ -19,18 +19,21 @@
             </div>
         </form>
     </div>
-    <div class="nocat" *ngIf="result_fetched && !(anyexp || anyinc)">
-        <img src="../../assets/norecords.svg" style="margin-top: 30px; width: 250px; height: 150px;" alt="" srcset="">
-        <div class="headin">
+    <div class="nocat row" *ngIf="result_fetched && !(anyexp || anyinc) && !nloaded">
+        <img src="../../assets/norecords.svg" class="col-lg-6 col-xl-6 col-md-12 col-sm-12" style="margin-top: 30px; width: 250px; height: 150px;" alt="" srcset="">
+        <div class="headin col-lg-6 col-xl-6 col-md-12 col-sm-12">
             <h3>No records found</h3>
             <h5>between the date-range you mentioned</h5>
         </div>
     </div>
-    <div class="result" *ngIf="result_fetched && (anyexp || anyinc)">
+    <div class="nocat notloaded" *ngIf="nloaded">
+        <i class="fas fa-circle-notch"></i>
+    </div>
+    <div class="result" *ngIf="result_fetched && (anyexp || anyinc) && !nloaded">
         <div class="expenses">
-            <div class="nocat notadded" *ngIf="!anyexp">
-                <h2>No Expenses Added yet!</h2>
-                <button class="sub" style=" width: fit-content; margin-left: 20px;"><a href="/dashboard/expenses">Add one</a></button>
+            <div class="nocat notadded row" *ngIf="!anyexp">
+                <h2 class="col-lg-4 col-xl-4 col-sm-12 col-md-12">No Expenses Added yet!</h2>
+                <button class="sub col-lg-4 col-xl-4 col-sm-12 col-md-12" style=" width: fit-content; margin-left: 20px;"><a href="/dashboard/expenses">Add one</a></button>
             </div>
             <table class="cat-table" align="center" width="90%" *ngIf="anyexp">
                 <thead>
@@ -38,7 +41,7 @@
                         <th class="tablehead" colspan=6>EXPENSES</th>
                     </tr>
                     <tr>
-                        <th width="10%">S.No.</th>
+                        <th class="d-none d-lg-block d-xl-block" style="width: 100%; height: 80px; padding-top: 30px;" width="10%">S.No.</th>
                         <th width="25%">Account Name</th>
                         <th width="20%">Date</th>
                         <th width="15%">Amount<br>( in &#8377; )</th>
@@ -51,7 +54,7 @@
                     itemsPerPage : items,
                     currentPage : epage,
                     totalItems : totalExp}">
-                        <td>{{exp.indexOf(e) + 1}}</td>
+                        <td class="d-none d-lg-block d-xl-block">{{exp.indexOf(e) + 1}}</td>
                         <td>{{e.name}}</td>
                         <td>{{e.date}}</td>
                         <td>{{e.amount}}</td>
@@ -76,8 +79,8 @@
         </div>
         <div class="incomes">
             <div class="nocat notadded" *ngIf="!anyinc">
-                <h2>No incomes Added yet!</h2>
-                <button class="sub" style=" width: fit-content; margin-left: 20px;"><a href="/dashboard/income">Add one</a></button>
+                <h2 class="col-sm-12 col-md-12 col-lg-6 col-xl-6">No incomes Added yet!</h2>
+                <button class="sub col-sm-12 col-md-12 col-lg-6 col-xl-6" style=" width: fit-content; margin-left: 20px;"><a href="/dashboard/income">Add one</a></button>
             </div>
             <table class="cat-table" align="center" width="90%" *ngIf="anyinc">
                 <thead>
@@ -85,7 +88,7 @@
                         <th class="tablehead" colspan=6>INCOMES</th>
                     </tr>
                     <tr>
-                        <th width="10%">S.No.</th>
+                        <th class="d-none d-lg-block d-xl-block" style="width: 100%; height: 80px; padding-top: 30px;" width="10%">S.No.</th>
                         <th width="25%">Account Name</th>
                         <th width="20%">Date</th>
                         <th width="15%">Amount<br>( in &#8377; )</th>
@@ -98,7 +101,7 @@
                     itemsPerPage : items,
                     currentPage : ipage,
                     totalItems : totalInc}">
-                        <td>{{inc.indexOf(e) + 1}}</td>
+                        <td class="d-none d-lg-block d-xl-block">{{inc.indexOf(e) + 1}}</td>
                         <td>{{e.name}}</td>
                         <td>{{e.date}}</td>
                         <td>{{e.amount}}</td>

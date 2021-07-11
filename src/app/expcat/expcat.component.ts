@@ -51,14 +51,19 @@ export class ExpcatComponent implements OnInit {
     this.expenseCategory = new ExpenseCategories(0, '', '', this.us.getAuthenticatedUserId());
   }
 
+  nloaded = false;
+
   refreshAllCategories() {
+    this.nloaded = true;
     this.service.findAllExpenseCategoriesByUserId(this.us.getAuthenticatedUserId()).subscribe(
       response => {
+        this.nloaded = false;
         this.details = response;
         this.totalRecords = this.details.length
         this.anyof = (this.totalRecords != 0)?true:false;
       },
       error => {
+        this.nloaded = false;
         console.log(error)
       }
     );

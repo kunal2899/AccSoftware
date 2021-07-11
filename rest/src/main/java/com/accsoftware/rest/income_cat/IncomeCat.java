@@ -2,6 +2,7 @@ package com.accsoftware.rest.income_cat;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class IncomeCat {
 	private Long userId;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "ic")
+	@OneToMany(mappedBy = "ic",cascade = CascadeType.REMOVE)
 	private List<Incomes> incomesList;
 
 	public IncomeCat(Long id, String name, String details, List<Incomes> incomesList, Long userId) {

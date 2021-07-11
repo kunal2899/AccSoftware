@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import * as $ from 'jquery';
-import { UserService } from '../user.service';
+import { AUTHENTICATED_USER, UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { MatSidenav } from '@angular/material/sidenav';
+import { User } from '../user';
 
 @Component({
   selector: 'app-my-nav',
@@ -12,6 +14,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./my-nav.component.css']
 })
 export class MyNavComponent {
+  @ViewChild('drawer',{static:true}) drawer:MatSidenav;
+  u_name = ""
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -28,8 +32,22 @@ export class MyNavComponent {
         }
       }
 
+      loadUser(){
+        this.us.findUserByUsername(sessionStorage.getItem(AUTHENTICATED_USER)).subscribe(
+          data => {
+            this.u_name = data.name.split(" ")[0]
+          }
+        );
+      }
+
+      dtoggle(){
+        if($(window).width() < 1024){
+          this.drawer.close();
+        }
+      }
 
   ngOnInit(): void {
+    this.loadUser()
     jQuery(function () {
       $('mat-nav-list a').on('click',function(){
         $(this).addClass('menu-active').siblings().removeClass('menu-active');

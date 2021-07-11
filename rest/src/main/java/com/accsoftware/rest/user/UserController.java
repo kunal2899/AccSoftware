@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 
 
 @CrossOrigin("http://localhost:4200")
@@ -29,9 +32,17 @@ public class UserController {
 	}
 	
 	@PutMapping("/users/update-user")
-	public ResponseEntity<?> updateUser(@RequestBody User e) {
-		e = us.update(e);
-		return new ResponseEntity<User>(e, HttpStatus.OK);
+	public ResponseEntity<?> updateUser(@RequestBody UpdateDTO e) {
+		String ep = e.getEntered_password();
+//		String encoded = new BCryptPasswordEncoder().encode(ep);
+		boolean comp = BCrypt.checkpw(ep, e.getCurr_password());
+		if(comp) {
+			User u  = e.getUser();
+			u.setPassword(new BCryptPasswordEncoder().encode(e.getNew_password()));
+			u = us.update(u);
+			return new ResponseEntity<User>(u, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("Password is incorrect",HttpStatus.FORBIDDEN);
 	}
 	
 	@GetMapping("/users")

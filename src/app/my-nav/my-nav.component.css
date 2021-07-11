@@ -12,7 +12,8 @@
 }
 
 
-.sidenav a{
+.sidenav a,
+.sidenav .utitle{
   font-family: 'Montserrat', 'Monte';
   font-weight: 400;
   letter-spacing: 1px;
@@ -20,6 +21,17 @@
   height: 70px;
   display: block;
   transition: 0.25s;
+}
+
+.sidenav .utitle{
+  margin-top: -10px;
+  background: #292929;
+  display: flex;
+  font-size: 1.5em;
+  padding-left: 20px;
+  font-weight: 600;
+  /* justify-content: center; */
+  align-items: center;
 }
 
 .sidenav span{
@@ -82,7 +94,6 @@ mat-nav-list a.menu-active
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.897);
   text-transform: uppercase;
   font-weight: 400;
-  -moz-user-select: none;
 }
 
 @media all and (max-width: 700px){

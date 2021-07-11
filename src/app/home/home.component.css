@@ -12,12 +12,15 @@
 }
 .content h1{
     font-size: 5em;
+    display: flex;
+    align-items: center;
     font-family: 'Fredoka One', cursive;
 }
 .content h1 span:nth-child(1){
     border: 10px solid white;
-    padding: 20px;
+    padding: 40px;
     border-radius: 20px;
+    width: 660px;
 }
 .qlinks{
     text-align: center;

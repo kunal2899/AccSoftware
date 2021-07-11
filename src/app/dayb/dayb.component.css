@@ -88,14 +88,45 @@
     align-items: center;
     position: relative;
     left: 50%;
+    /* border: 1px solid white; */
     transform: translateX(-55%);
-    /* justify-content: center; */
-    margin: 30px;
-    margin-bottom: 0px;
+    justify-content: center;
+    /* margin: 30px; */
+    margin: 0;
+    margin-top: 30px;
     padding: 10px;
     height: 150px;
-    width: 600px;
+    max-width: 600px;
     font-family: 'Montserrat';
+}
+
+.nocat h3{
+    margin: 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    /* position: absolute;
+    left: 70%;
+    transform: translateX(-70%); */
+    width: fit-content;
+    font-family: 'Quicksand';
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 2em;
+}
+
+.nocat .headin{
+    /* border: 1px solid white; */
+    margin-top: 20px;
+    text-align: center;
+    margin-left: -10px;
+}
+
+.nocat h5{
+    font-size: 1em;
+    text-align: center;
+    font-family: 'Quicksand';
 }
 
 .notadded{
@@ -107,17 +138,14 @@
     text-decoration: none;
 }
 
-.nocat h3{
+/* .nocat h3{
     margin: 0;
-    /* position: absolute;
-    left: 70%;
-    transform: translateX(-70%); */
     width: fit-content;
     font-family: 'Quicksand';
     font-weight: 700;
     letter-spacing: 1px;
     font-size: 2em;
-}
+} */
 
 .nocat h2{
     margin: 0;
@@ -129,7 +157,7 @@
     font-weight: 700;
     letter-spacing: 1px;
 }
-
+/* 
 .nocat .headin{
     margin-left: -10px;
 }
@@ -137,13 +165,12 @@
 .nocat h5{
     font-size: 1em;
     font-family: 'Quicksand';
-}
+} */
 
   .sub{
     padding: 10px 30px; 
     border: 2px solid orangered;
     border-radius: 50px;
-    width: 60%;
     background: none;
     color: white;
     font-family: 'Montserrat';
@@ -291,4 +318,31 @@
     outline: none;
     box-shadow: none;
     padding-right: 10px;
+}
+
+@media all and (max-width: 500px){
+
+    .total h1{
+        font-size: 2em;
+        margin: 0;
+    }
+
+    .additional{
+        margin-top: 0;
+        width: 300px;
+    }
+
+    .additional label{
+        display: none;
+    }
+
+    .additional input[type=date]{
+        margin: 0;
+        margin-left: 10px;
+        width: 165px;
+    }
+
+    table{
+        margin-top: 0;
+    }
 }

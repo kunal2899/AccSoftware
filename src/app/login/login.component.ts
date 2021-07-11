@@ -10,8 +10,9 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  u:User = new User(0,'kj','kj','9999999999','kj@gmail.com','kj','Kunal2000@',true);
-  // u = new User(0,'','','','','','');
+  // u:User = new User(0,'kj','kj','9999999999','kj@gmail.com','kj','Kunal2000@',true);
+  u = new User(0,'','','','','','');
+  rmsg = '';
 
   username:string = '';
   password:string = '';
@@ -52,8 +53,10 @@ export class LoginComponent implements OnInit {
     if(form.valid){
       this.us.addUser(this.u).subscribe(
         response => {
-          alert("Your account is created, please login to continue.");
-          location.reload()
+          this.rmsg = 'Your account is created, login to continue.';
+          setTimeout(()=>{this.rmsg = ''},3000)
+          $('.reg').css('display', 'none');
+          $('.log').fadeIn(500);
         },
         error => {
           console.log(error);

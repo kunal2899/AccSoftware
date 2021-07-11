@@ -253,8 +253,41 @@
 
 
 .result{
-    display: grid;
-    grid-template-columns: 50% 50%;
+    /* display: grid;
+    grid-template-columns: 50% 50%; */
     transition: 1s;
     overflow: hidden;
+}
+
+/* .result .incomes .cat-table{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+} */
+
+@media all and (max-width: 500px){
+
+    .total h1{
+        font-size: 2em;
+        margin: 0;
+    }
+
+    .additional{
+        margin-top: 0;
+        width: 300px;
+    }
+
+    .additional label{
+        display: none;
+    }
+
+    .additional input[type=date]{
+        margin: 0;
+        margin-left: 10px;
+        width: 165px;
+    }
+
+    table{
+        margin-top: 0;
+    }
 }

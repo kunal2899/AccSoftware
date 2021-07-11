@@ -2,6 +2,7 @@ package com.accsoftware.rest.expense_cat;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class ExpenseCat {
 	private Long userId;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "ec")
+	@OneToMany(mappedBy = "ec",cascade = CascadeType.REMOVE)
 	List<Expenses> expensesList;
 	
 	public ExpenseCat() {

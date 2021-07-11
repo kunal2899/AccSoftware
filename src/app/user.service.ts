@@ -36,11 +36,11 @@ findUserByUsername(uname){
 }
 
 addUser(u:User){
-  return this.http.post(`${APP_URL}/users/add-user`,u, CORS_HEADERS);
+  return this.http.post(`${APP_URL}/users/add-user`,u,CORS_HEADERS);
 }
 
-updateUser(uid,u){
-  return this.http.put<User>(`${APP_URL}/users/update-user/${uid}`,u);
+updateUser(u){
+  return this.http.put<User>(`${APP_URL}/users/update-user`,u);
 }
 
 removeUser(uid){
